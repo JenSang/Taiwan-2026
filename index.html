@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taiwan Trip Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<style>
+/* Leaflet core CSS inlined so it can never be blocked by an external stylesheet policy */
+.leaflet-image-layer,.leaflet-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane,.leaflet-pane>canvas,.leaflet-pane>svg,.leaflet-tile,.leaflet-tile-container,.leaflet-zoom-box{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:0 0}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-bottom,.leaflet-top{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}svg.leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-control,.leaflet-popup-pane{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-image-layer,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-image-layer.leaflet-interactive,.leaflet-marker-icon.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a{color:#0078a8}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;font-size:12px;font-size:.75rem;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:focus,.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in,.leaflet-touch .leaflet-control-zoom-out{font-size:22px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(images/layers.png);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:url(images/layers-2x.png);background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(images/marker-icon.png)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:focus,.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6669em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;white-space:nowrap;-moz-box-sizing:border-box;box-sizing:border-box;background:rgba(255,255,255,.8);text-shadow:1px 1px #fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers{box-shadow:none}.leaflet-touch .leaflet-bar,.leaflet-touch .leaflet-control-layers{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:24px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;font-size:1.08333em;min-height:1px}.leaflet-popup-content p{margin:17px 0;margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:0 0}.leaflet-container a.leaflet-popup-close-button:focus,.leaflet-container a.leaflet-popup-close-button:hover{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto}.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before,.leaflet-tooltip-top:before{position:absolute;pointer-events:none;border:6px solid transparent;background:0 0;content:""}.leaflet-tooltip-bottom{margin-top:6px}.leaflet-tooltip-top{margin-top:-6px}.leaflet-tooltip-bottom:before,.leaflet-tooltip-top:before{left:50%;margin-left:-6px}.leaflet-tooltip-top:before{bottom:0;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-bottom:before{top:0;margin-top:-12px;margin-left:-6px;border-bottom-color:#fff}.leaflet-tooltip-left{margin-left:-6px}.leaflet-tooltip-right{margin-left:6px}.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{top:50%;margin-top:-6px}.leaflet-tooltip-left:before{right:0;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{left:0;margin-left:-12px;border-right-color:#fff}@media print{.leaflet-control{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<style>
+ :root{
+ --primary:#FF385C;
+ --primary-dark:#D70466;
+ --primary-soft:#FFF0F3;
+ --secondary:#00A699;
+ --secondary-dark:#008489;
+ --secondary-soft:#E0F7F5;
+ --surface:#FFFFFF;
+ --bg:#F7F7F7;
+ --ink:#222222;
+ --ink-secondary:#717171;
+ --border:#DDDDDD;
+ --border-light:#EBEBEB;
+ --shadow: 0 6px 20px rgba(0,0,0,0.08);
+ --shadow-hover: 0 6px 20px rgba(0,0,0,0.14);
+ --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+ --radius: 16px;
+ --radius-sm: 12px;
+ --radius-pill: 100px;
+ --transition: 0.2s cubic-bezier(0.2,0,0,1);
+ }
+ .mi{
+ font-family:'Material Symbols Rounded';
+ font-variation-settings:'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+ vertical-align:middle;
+ font-size:20px;
+ }
+ .mi-sm{font-size:18px;}
+ .mi-lg{font-size:24px;}
+ .mi-outline{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;}
+
+ *{box-sizing:border-box;}
+ html{overflow-x:hidden;width:100%;scroll-behavior:smooth;}
+ body{
+ margin:0;
+ background:var(--bg);
+ color:var(--ink);
+ font-family:'Inter','Noto Sans Thai',-apple-system,'Segoe UI',sans-serif;
+ -webkit-font-smoothing:antialiased;
+ width:100%;
+ }
+ :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px;}
+ ::selection{background:var(--primary-soft);color:var(--primary-dark);}
+ .wrap{max-width:1160px;margin:0 auto;padding:0 20px 70px;}
+ h1,h2,h3,h4{font-family:'Inter','Noto Sans Thai',-apple-system,'Segoe UI',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+
+ header.hero{
+ position:relative;
+ overflow:hidden;
+ padding:56px 20px 76px;
+ text-align:center;
+ background:
+ radial-gradient(75% 60% at 12% 0%, var(--secondary-soft) 0%, transparent 55%),
+ radial-gradient(120% 100% at 50% 0%, var(--primary-soft) 0%, var(--bg) 62%);
+ }
+ .hero-skyline{
+ position:absolute;left:0;right:0;bottom:0;
+ width:100%;height:100px;
+ fill:var(--primary);
+ opacity:0.09;
+ pointer-events:none;
+ }
+ .hero-inner{position:relative;z-index:1;animation:heroIn .5s cubic-bezier(0.2,0,0,1);}
+ @keyframes heroIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+ .eyebrow{
+ display:inline-flex;align-items:center;gap:6px;
+ background:var(--surface);
+ padding:7px 18px;
+ border-radius:30px;
+ font-size:12.5px;
+ letter-spacing:0.04em;
+ color:var(--primary-dark);
+ font-weight:700;
+ box-shadow:var(--shadow-sm);
+ margin-bottom:14px;
+ }
+ h1.title{
+ font-weight:700;
+ font-size:clamp(34px,6vw,52px);
+ margin:0 0 10px;
+ color:var(--ink);
+ letter-spacing:-0.02em;
+ }
+ .hero-sub{
+ margin:0;
+ font-size:15px;
+ color:var(--ink-secondary);
+ font-weight:500;
+ }
+ .hero-countdown{
+ display:inline-flex;align-items:center;gap:6px;
+ margin-top:16px;
+ background:var(--surface);
+ padding:7px 18px;
+ border-radius:20px;
+ font-size:12.5px;font-weight:700;
+ color:var(--secondary-dark);
+ box-shadow:var(--shadow-sm);
+ animation:countdownPulse 2.6s ease-in-out infinite;
+ }
+ @keyframes countdownPulse{0%,100%{box-shadow:var(--shadow-sm);}50%{box-shadow:0 6px 18px rgba(0,166,153,0.28);}}
+
+ .day-rail{
+ display:grid;
+ grid-template-columns:repeat(5, 1fr);
+ gap:12px;
+ padding:6px 4px 12px;
+ margin-top:-6px;
+ position:sticky;
+ top:0;
+ z-index:1500;
+ background:var(--bg);
+ transition:box-shadow .15s ease;
+ }
+ .day-rail.is-stuck{
+ box-shadow:var(--shadow-sm);
+ border-radius:0 0 20px 20px;
+ }
+ .day-rail.is-stuck .day-pill{padding-bottom:10px;}
+ .day-rail.is-stuck .day-pill .route{display:none;}
+ .day-pill{
+ background:var(--surface);
+ border-radius:24px;
+ box-shadow:var(--shadow);
+ padding:14px 16px;
+ cursor:pointer;
+ border:2.5px solid transparent;
+ transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+ min-width:0;
+ }
+ .day-pill:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+ .day-pill:active{transform:translateY(0);}
+ .day-pill.active{border-color:var(--primary); background:var(--primary-soft);box-shadow:var(--shadow-hover);}
+ .day-pill .pill-top{
+ display:flex; align-items:center; margin-bottom:6px;
+ }
+ .day-pill .num{
+ background:var(--border);
+ color:var(--ink-secondary);
+ font-weight:700;
+ width:auto;height:26px;padding:0 12px;border-radius:14px;
+ display:flex;align-items:center;justify-content:center;
+ font-size:11.5px;
+ white-space:nowrap;
+ transition:background .15s ease, color .15s ease;
+ }
+ .day-pill.active .num{
+ background:var(--primary-dark);
+ color:#fff;
+ font-weight:800;letter-spacing:0.02em;
+ }
+ .pill-date-row{margin-bottom:8px;}
+ .pill-date-main{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-0.01em;}
+ .pill-date-weekday{font-size:12.5px;font-weight:600;color:var(--ink-secondary);margin-left:6px;}
+ .day-pill .route{font-size:12.5px;color:var(--ink);line-height:1.5;overflow-wrap:break-word;}
+ .day-pill.placeholder{
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;color:var(--ink-secondary);
+ border:2px dashed var(--border);
+ box-shadow:none;background:transparent;
+ font-size:12.5px;
+ }
+
+ #dayContent{
+ transition:opacity .18s ease, transform .18s ease;
+ }
+ #dayContent.day-fade{opacity:0;transform:translateY(6px);}
+
+ .section-title{
+ display:flex;align-items:center;gap:10px;
+ margin:34px 0 16px;
+ }
+ .section-title h2{
+ font-size:24px;margin:0;color:var(--ink);
+ }
+ .section-title .date-chip{
+ font-size:12.5px;font-weight:700;color:var(--primary-dark);
+ background:var(--primary-soft);
+ padding:4px 12px;border-radius:20px;
+ }
+ .weather-chip{
+ display:inline-flex;align-items:center;gap:6px;
+ background:var(--secondary-soft);color:var(--secondary-dark);
+ font-size:12.5px;font-weight:700;
+ padding:6px 14px;border-radius:20px;
+ white-space:nowrap;
+ }
+ .weather-chip:empty{display:none;}
+ .weather-chip .mi{font-size:18px;}
+ .weather-chip-note{font-weight:600;color:var(--ink-secondary);font-size:10.5px;margin-left:1px;}
+
+ .grid{
+ display:grid;
+ grid-template-columns:0.95fr 1.05fr;
+ gap:22px;
+ align-items:start;
+ }
+ @media (max-width:860px){ .grid{grid-template-columns:1fr;} }
+
+ .card{
+ background:var(--surface);
+ border-radius:var(--radius);
+ box-shadow:var(--shadow);
+ border:1px solid var(--border-light);
+ max-width:100%;
+ overflow:hidden;
+ position:relative;
+ animation:cardIn .4s cubic-bezier(0.2,0,0,1);
+ }
+ @keyframes cardIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+ /* Spotlight hover: a soft glow that follows the cursor, desktop only */
+ .timeline-card::before,
+ .map-card::before{
+ content:"";
+ position:absolute;inset:0;
+ z-index:-1;
+ background:radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--primary-soft), transparent 65%);
+ opacity:0;
+ transition:opacity .3s ease;
+ pointer-events:none;
+ }
+ @media (hover:hover){
+ .timeline-card:hover::before,
+ .map-card:hover::before{opacity:1;}
+ }
+
+ .timeline-card{padding:8px 4px 18px;}
+ .card-head{
+ display:flex;align-items:center;gap:8px;
+ padding:16px 22px 8px;
+ font-weight:700;color:var(--ink);font-size:14.5px;
+ }
+ .tl-list{padding:0 14px;display:flex;flex-direction:column;gap:10px;}
+ .tl-item{
+ display:flex;gap:16px;
+ background:var(--bg);
+ border-radius:18px;
+ padding:14px 16px;
+ transition:background .15s ease, box-shadow .15s ease;
+ animation:tlItemIn .35s cubic-bezier(0.2,0,0,1) backwards;
+ }
+ .tl-item:hover{box-shadow:0 0 0 1.5px var(--border) inset;}
+ @keyframes tlItemIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
+ .tl-item.tl-stop{
+ background:var(--secondary-soft);
+ }
+ .tl-time-col{flex:0 0 74px;}
+ .tl-time{
+ font-weight:700;color:var(--ink);
+ font-size:13px;line-height:1.3;
+ }
+ .tl-dur{
+ display:block;
+ font-weight:600;
+ font-size:10.5px;
+ color:var(--ink-secondary);
+ margin-top:2px;
+ }
+ .tl-main{flex:1;min-width:0;}
+ .tl-activity{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:8px;overflow-wrap:break-word;word-break:break-word;}
+ .tl-activity a{overflow-wrap:break-word;word-break:break-word;}
+ .tl-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+ .tl-transport{
+ display:inline-flex;align-items:center;gap:5px;
+ font-size:12px;color:var(--secondary-dark);font-weight:600;
+ overflow-wrap:anywhere;
+ max-width:100%;
+ }
+ .tl-loc-link{
+ text-decoration:none;
+ display:inline-flex;align-items:center;gap:3px;
+ max-width:220px;
+ overflow:hidden;
+ font-size:11.5px;color:var(--primary-dark);font-weight:700;
+ background:var(--primary-soft);
+ padding:4px 10px;border-radius:20px;
+ white-space:nowrap;
+ text-overflow:ellipsis;
+ transition:transform .12s ease;
+ }
+ .tl-loc-link .loc-text{overflow:hidden;text-overflow:ellipsis;}
+ .tl-loc-link:hover{transform:translateY(-1px);text-decoration:underline;}
+ @media (max-width:480px){
+ .tl-item{flex-direction:column;gap:8px;}
+ .tl-time-col{flex:none;display:flex;align-items:baseline;gap:8px;}
+ .tl-dur{margin-top:0;}
+ }
+
+ .sched-btn{
+ display:inline-flex;align-items:center;gap:5px;
+ font-family:'Inter','Noto Sans Thai',-apple-system,'Segoe UI',sans-serif;
+ font-size:12px;font-weight:700;
+ color:var(--secondary-dark);
+ background:var(--surface);
+ border:1.5px solid var(--secondary-dark);
+ padding:4px 10px;border-radius:20px;
+ cursor:pointer;
+ overflow-wrap:anywhere;
+ max-width:100%;
+ }
+ .sched-btn:hover{background:var(--secondary-soft);}
+ .sched-btn .caret{transition:transform .15s ease;font-size:10px;}
+ .sched-btn.open .caret{transform:rotate(180deg);}
+ .sched-detail{
+ background:var(--secondary-soft);
+ border-radius:16px;
+ padding:12px 16px;
+ font-size:12.5px;
+ color:var(--ink);
+ line-height:1.6;
+ margin-top:10px;
+ }
+ .sched-detail .sd-row{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;}
+ .sched-detail .sd-take{color:var(--primary-dark);font-weight:700;}
+ .sched-detail .sd-next{color:var(--secondary-dark);font-weight:700;}
+ .sched-detail a{
+ color:var(--ink);font-weight:700;text-decoration:underline;
+ text-underline-offset:2px;
+ }
+
+ /* ---------- Info dropdown (read more) ---------- */
+ .info-btn{
+ display:inline-flex;align-items:center;gap:5px;
+ font-family:inherit;
+ font-size:12px;font-weight:700;
+ color:var(--primary);
+ background:var(--surface);
+ border:1.5px solid var(--primary);
+ padding:4px 10px;border-radius:20px;
+ cursor:pointer;
+ overflow-wrap:anywhere;
+ max-width:100%;
+ }
+ .info-btn:hover{background:var(--primary-soft);}
+ .info-btn .caret{transition:transform .15s ease;font-size:10px;}
+ .info-btn.open .caret{transform:rotate(180deg);}
+ .info-detail{
+ background:var(--primary-soft);
+ border-radius:16px;
+ padding:14px 16px;
+ font-size:12.5px;
+ color:var(--ink);
+ line-height:1.7;
+ margin-top:10px;
+ }
+ .info-detail h5{margin:0 0 6px;font-size:13px;color:var(--primary-dark);}
+ .info-detail ul{margin:0 0 10px;padding-left:18px;}
+ .info-detail ul:last-child{margin-bottom:0;}
+ .info-detail a{color:var(--primary-dark);font-weight:700;text-decoration:underline;text-underline-offset:2px;}
+
+ /* ---------- Daily notes ---------- */
+ .notes-card{margin-top:22px;padding:20px 22px;}
+
+ /* ---------- Expense tracker ---------- */
+ .expense-form{
+ display:flex;flex-direction:column;gap:14px;
+ padding:0 0 16px;
+ }
+ .field-group{display:flex;flex-direction:column;gap:6px;}
+ .field-label{
+ font-size:11.5px;font-weight:700;color:var(--ink-secondary);
+ text-transform:uppercase;letter-spacing:0.05em;
+ }
+ .expense-form input{
+ font-family:inherit;font-size:13.5px;
+ padding:10px 14px;border-radius:16px;
+ border:1.5px solid var(--border);
+ background:var(--surface);color:var(--ink);
+ outline:none;width:100%;
+ }
+ .expense-form input:focus{border-color:var(--primary);}
+ .amount-row{display:flex;gap:8px;align-items:stretch;}
+ .amount-row #expAmount{flex:1;min-width:0;font-size:18px;font-weight:700;}
+ .expense-rate-note{font-size:10.5px;color:var(--ink-secondary);min-height:13px;}
+
+ /* Segmented control: Payer Name, Payment Method */
+ .segmented{display:flex;background:var(--bg);border-radius:16px;padding:3px;gap:2px;}
+ .segmented-opt{
+ flex:1;
+ display:flex;align-items:center;justify-content:center;gap:5px;
+ font-family:inherit;font-size:12.5px;font-weight:700;
+ color:var(--ink-secondary);
+ background:none;border:none;border-radius:13px;
+ padding:9px 8px;cursor:pointer;
+ transition:background .15s ease, color .15s ease, box-shadow .15s ease;
+ white-space:nowrap;
+ }
+ .segmented-opt .mi{font-size:16px;}
+ .segmented-opt:hover{color:var(--ink);}
+ .segmented-opt.active{background:var(--surface);color:var(--primary-dark);box-shadow:var(--shadow-sm);}
+
+ /* Currency toggle: NT$ / THB */
+ .currency-toggle{flex:0 0 auto;display:flex;background:var(--bg);border-radius:16px;padding:3px;gap:2px;}
+ .currency-opt{
+ font-family:inherit;font-size:12.5px;font-weight:700;
+ color:var(--ink-secondary);
+ background:none;border:none;border-radius:13px;
+ padding:0 12px;cursor:pointer;
+ transition:background .15s ease, color .15s ease, box-shadow .15s ease;
+ }
+ .currency-opt:hover{color:var(--ink);}
+ .currency-opt.active{background:var(--surface);color:var(--primary-dark);box-shadow:var(--shadow-sm);}
+
+ .expense-submit-btn{
+ font-family:inherit;font-size:14px;font-weight:700;
+ color:#fff;background:var(--primary);
+ border:none;border-radius:16px;
+ padding:13px 14px;cursor:pointer;
+ transition:transform .12s ease, background .15s ease;
+ }
+ .expense-submit-btn:hover{transform:translateY(-1px);background:var(--primary-dark);}
+ .expense-submit-btn:active{transform:translateY(0) scale(0.98);}
+
+ .expense-status{
+ display:flex;align-items:center;gap:6px;
+ font-size:12.5px;font-weight:700;
+ border-radius:12px;
+ transition:all .2s ease;
+ }
+ .expense-status:empty{padding:0;}
+ .expense-status.is-ok{color:var(--secondary-dark);background:var(--secondary-soft);padding:10px 14px;}
+ .expense-status.is-error{color:var(--primary-dark);background:var(--primary-soft);padding:10px 14px;}
+
+ .expense-list{padding:0;display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+ .undo-toast{
+ position:relative;overflow:hidden;
+ display:flex;align-items:center;gap:10px;
+ background:var(--ink);color:#fff;
+ border-radius:16px;padding:12px 14px;
+ margin-bottom:10px;
+ animation:undoToastIn .2s cubic-bezier(0.2,0,0,1);
+ }
+ @keyframes undoToastIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+ .undo-toast-text{flex:1;min-width:0;font-size:12.5px;font-weight:600;overflow-wrap:break-word;}
+ .undo-toast-btn{
+ flex:0 0 auto;
+ background:none;border:none;color:var(--secondary);
+ font-family:inherit;font-weight:800;font-size:12.5px;
+ text-transform:uppercase;letter-spacing:0.03em;
+ cursor:pointer;padding:4px 6px;
+ }
+ .undo-toast-btn:hover{text-decoration:underline;}
+ .undo-toast-bar{
+ position:absolute;left:0;bottom:0;height:3px;
+ background:var(--primary);
+ animation:undoToastShrink 3s linear forwards;
+ }
+ @keyframes undoToastShrink{from{width:100%;}to{width:0%;}}
+ .expense-empty{
+ font-size:12.5px;color:var(--ink-secondary);
+ background:var(--bg);
+ border-radius:16px;padding:14px;text-align:center;
+ }
+ .expense-row{
+ display:flex;align-items:center;gap:10px;
+ background:var(--bg);
+ border-radius:16px;padding:10px 14px;
+ }
+ @keyframes expenseRowIn{
+ 0%{background:var(--secondary-soft);transform:scale(0.98);}
+ 100%{background:var(--bg);transform:scale(1);}
+ }
+ .expense-row-new{animation:expenseRowIn .7s ease;}
+ .expense-row-main{flex:1;min-width:0;display:flex;flex-direction:column;}
+ .expense-name{font-weight:700;font-size:12.5px;color:var(--ink);}
+ .expense-desc{font-size:11.5px;color:var(--ink-secondary);}
+ .expense-amount{font-weight:700;font-size:13px;color:var(--primary-dark);white-space:nowrap;}
+ .expense-del{
+ background:none;border:none;color:var(--ink-secondary);
+ font-size:14px;cursor:pointer;padding:2px 4px;
+ border-radius:16px;
+ }
+ .expense-del:hover{background:var(--primary-soft);color:var(--primary-dark);}
+ .summary-del{
+ background:none;border:none;color:var(--ink-secondary);
+ font-size:13px;cursor:pointer;padding:2px 6px;
+ border-radius:16px;margin-left:6px;
+ }
+ .summary-del:hover{background:var(--primary-soft);color:var(--primary-dark);}
+ .expense-summary{padding:6px 0 4px;}
+ .summary-total{
+ font-size:13px;font-weight:700;color:var(--ink);
+ margin-bottom:10px;
+ background:var(--secondary-soft);
+ border-radius:16px;padding:12px 14px;
+ }
+ .summary-row{
+ display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+ padding:8px 4px;border-top:1px solid var(--border-light);
+ font-size:12.5px;
+ }
+ .summary-name{font-weight:700;color:var(--ink);min-width:70px;}
+ .summary-paid{color:var(--ink-secondary);}
+ .bal-plus{margin-left:auto;color:var(--secondary-dark);font-weight:700;}
+ .bal-minus{margin-left:auto;color:var(--primary-dark);font-weight:700;}
+ .expense-actions{
+ padding:14px 0 4px;
+ display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+ }
+ .expense-disabled-note{
+ margin:0 0 4px;padding:14px;
+ background:var(--primary-soft);color:var(--primary-dark);
+ border-radius:16px;font-size:12.5px;line-height:1.6;
+ }
+
+ .expense-row .exp-name{font-weight:700;color:var(--primary-dark);flex:0 0 50px;}
+ .expense-row .exp-item{flex:1;color:var(--ink);}
+ .expense-row .exp-amount{font-weight:700;color:var(--primary-dark);white-space:nowrap;}
+ .exp-rate-flag{flex:0 0 auto;color:var(--secondary-dark);font-size:15px;cursor:help;}
+ .expense-row .exp-payment{font-size:11px;color:var(--ink-secondary);flex:0 0 auto;}
+ .expense-row .exp-del{
+ background:none;border:none;color:var(--ink-secondary);cursor:pointer;font-size:15px;flex:0 0 auto;
+ }
+ .expense-day-total{
+ text-align:right;font-weight:700;font-size:14px;color:var(--ink);
+ padding-top:8px;border-top:1.5px dashed var(--border);
+ }
+
+ /* ---------- Report modal ---------- */
+ .report-overlay{
+ position:fixed;inset:0;
+ background:rgba(0,0,0,0.5);
+ backdrop-filter:blur(4px);
+ z-index:2000;
+ display:flex;align-items:center;justify-content:center;
+ padding:20px;
+ }
+ .report-modal{
+ background:var(--surface);
+ border-radius:var(--radius);
+ border:1px solid var(--border-light);
+ max-width:480px;width:100%;
+ max-height:85vh;
+ overflow-y:auto;
+ box-shadow:var(--shadow);
+ }
+ .report-modal-head{
+ display:flex;align-items:center;justify-content:space-between;
+ padding:18px 20px;
+ border-bottom:1.5px solid var(--border-light);
+ position:sticky;top:0;background:var(--surface);border-radius:var(--radius) var(--radius) 0 0;
+ }
+ .report-modal-head h3{margin:0;font-size:17px;color:var(--ink);display:flex;align-items:center;gap:8px;}
+ .report-close{
+ background:var(--bg);border:none;border-radius:50%;
+ width:30px;height:30px;font-size:14px;cursor:pointer;color:var(--ink);
+ display:flex;align-items:center;justify-content:center;
+ }
+ .report-body{padding:18px 20px 22px;}
+ .report-day-tabs{
+ display:flex;flex-wrap:wrap;gap:6px;
+ margin-bottom:12px;
+ }
+ .report-day-tab{
+ font-family:inherit;font-size:12px;font-weight:700;
+ padding:6px 12px;border-radius:16px;
+ border:1.5px solid var(--border);
+ background:var(--surface);color:var(--ink);
+ cursor:pointer;
+ display:flex;flex-direction:column;align-items:center;gap:1px;
+ }
+ .report-day-tab-date{font-size:9px;font-weight:600;color:var(--ink-secondary);}
+ .report-day-tab.active .report-day-tab-date{color:rgba(255,255,255,0.75);}
+ .report-day-tab.active{
+ background:var(--primary-dark);border-color:var(--primary-dark);color:#fff;
+ }
+
+ .view-summary-mini-btn{
+ display:flex;align-items:center;justify-content:center;gap:6px;
+ margin:14px auto 2px;
+ background:none;border:1.5px solid var(--border);
+ color:var(--ink-secondary);font-weight:700;font-size:12.5px;
+ padding:8px 16px;border-radius:20px;cursor:pointer;
+ font-family:inherit;
+ transition:border-color .15s ease, color .15s ease;
+ }
+ .view-summary-mini-btn:hover{border-color:var(--primary);color:var(--primary-dark);}
+
+ .export-excel-btn{
+ display:block;width:100%;
+ margin-top:18px;
+ background:var(--secondary-dark);
+ color:#fff;font-weight:700;font-size:14px;
+ border:none;padding:13px;border-radius:var(--radius-sm);cursor:pointer;
+ font-family:inherit;
+ box-shadow:var(--shadow-sm);
+ }
+ /* ---------- Summary dashboard: hero stat + bento tiles ---------- */
+ .stat-hero{
+ background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+ color:#fff;
+ border-radius:18px;
+ padding:20px 22px;
+ margin-bottom:16px;
+ box-shadow:var(--shadow);
+ }
+ .stat-hero-label{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:0.85;}
+ .stat-hero-value{font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
+ .stat-hero-sub{font-size:12px;opacity:0.85;}
+ .stat-hero-split{
+ margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.25);
+ display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;
+ }
+ .stat-hero-split b{font-size:14px;}
+
+ .stat-section-label{
+ font-size:11px;font-weight:700;color:var(--ink-secondary);
+ text-transform:uppercase;letter-spacing:0.05em;
+ margin:0 0 8px;
+ }
+
+ .stat-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;margin-bottom:18px;}
+ @media (max-width:480px){ .stat-grid{grid-template-columns:1fr;} }
+ .stat-tile{background:var(--bg);border-radius:16px;padding:14px;}
+ .stat-tile-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+ .stat-tile-avatar{
+ width:24px;height:24px;border-radius:50%;flex:0 0 auto;
+ background:var(--primary-soft);color:var(--primary-dark);
+ display:flex;align-items:center;justify-content:center;
+ font-size:11px;font-weight:800;
+ }
+ .stat-tile-name{font-weight:700;font-size:13px;color:var(--ink);}
+ .stat-tile-value{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2;}
+ .stat-tile-value.is-get{color:var(--secondary-dark);}
+ .stat-tile-value.is-owe{color:var(--primary-dark);}
+ .stat-tile-paid{font-size:11px;color:var(--ink-secondary);margin-top:2px;}
+ .stat-tile-bar-track{height:5px;border-radius:3px;background:var(--border-light);overflow:hidden;margin-top:8px;}
+ .stat-tile-bar{height:100%;border-radius:3px;}
+ .stat-tile-bar.bar-get{background:var(--secondary);}
+ .stat-tile-bar.bar-owe{background:var(--primary);}
+
+ .report-daybreakdown{
+ background:var(--bg);border-radius:14px;padding:6px 14px;margin-bottom:4px;
+ }
+ .report-day-date{color:var(--ink-secondary);font-weight:400;font-size:11.5px;}
+
+ .expense-status{
+ grid-column:1 / -1;
+ font-size:12.5px;font-weight:700;
+ min-height:16px;
+ }
+ .expense-status.is-ok{color:var(--secondary-dark);}
+ .expense-status.is-error{color:var(--primary-dark);}
+ .expense-error{
+ background:var(--primary-soft);color:var(--primary-dark);
+ border-radius:12px;padding:10px 14px;font-size:12.5px;
+ margin-bottom:10px;
+ }
+ .fallback-note{
+ margin-top:12px;
+ background:#FFF8E1;color:#8A6D1D;
+ border-radius:12px;padding:10px 14px;font-size:11.5px;line-height:1.5;
+ }
+
+ .today-summary{
+ margin-top:14px;background:var(--secondary-soft);border-radius:14px;padding:12px 16px;
+ }
+ .today-summary-title{font-weight:700;font-size:13px;color:var(--ink);margin-bottom:6px;}
+ .today-summary-total{font-weight:700;font-size:14px;color:var(--primary-dark);margin-bottom:6px;}
+ .today-summary-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink);padding:2px 0;}
+
+ .report-day-subline{font-size:11px;color:var(--ink-secondary);padding:0 0 8px 24px;}
+
+ .settlement-box{
+ margin-top:18px;background:var(--secondary-soft);border-radius:14px;padding:14px 16px;
+ }
+ .settlement-title{font-weight:700;font-size:13.5px;color:var(--secondary-dark);margin-bottom:8px;}
+ .settlement-line{font-size:13px;color:var(--ink);padding:4px 0;line-height:1.5;}
+ .settlement-summary-line{border-top:1px dashed var(--border);margin-top:6px;padding-top:8px;color:var(--ink-secondary);}
+ .fx-thb{color:var(--ink-secondary);font-weight:600;font-size:12px;}
+ .fx-note{font-size:10.5px;color:var(--ink-secondary);font-style:italic;}
+ .report-day-row{
+ display:flex;justify-content:space-between;
+ font-size:13.5px;padding:6px 0;color:var(--ink);
+ }
+ .notes-card ul{margin:0;padding-left:20px;}
+ .notes-card li{margin-bottom:8px;font-size:13px;line-height:1.6;color:var(--ink);}
+ .notes-card li:last-child{margin-bottom:0;}
+
+ .map-card{overflow:hidden;padding-bottom:16px;}
+ .leaflet-wrap{padding:0 16px;}
+ #leafletMap{ height:320px; width:100%; border-radius:16px; }
+ .lf-pin{
+ width:28px;height:28px;border-radius:50% 50% 50% 0;
+ background:var(--primary);
+ transform:rotate(-45deg);
+ box-shadow:0 3px 8px rgba(0,0,0,0.3);
+ display:flex;align-items:center;justify-content:center;
+ border:2px solid #fff;
+ }
+ .lf-pin span{
+ transform:rotate(45deg);
+ color:#fff;font-weight:700;font-size:12px;
+ font-family:'Inter','Noto Sans Thai',-apple-system,'Segoe UI',sans-serif;
+ }
+ .map-actions{
+ display:flex;flex-wrap:wrap;gap:8px;
+ padding:14px 22px 4px;
+ }
+
+ .route-visual{padding:18px 22px 6px;display:flex;flex-direction:column;}
+ .rv-stop{display:flex;gap:12px;align-items:flex-start;position:relative;}
+ .rv-stop .rv-num{
+ flex:0 0 auto;
+ width:28px;height:28px;border-radius:50%;
+ background:var(--primary);color:#fff;
+ display:flex;align-items:center;justify-content:center;
+ font-weight:700;font-size:12.5px;
+ z-index:1;
+ }
+ .rv-stop .rv-line{
+ position:absolute;left:13px;top:28px;bottom:-14px;width:2px;
+ background:repeating-linear-gradient(to bottom, var(--secondary) 0 4px, transparent 4px 8px);
+ }
+ .rv-stop:last-child .rv-line{display:none;}
+ .rv-stop-body{padding:2px 0 22px;flex:1;}
+ .rv-stop-name{font-weight:700;font-size:13.5px;color:var(--ink);}
+ .chip-link{
+ text-decoration:none;
+ font-size:12px;font-weight:600;
+ background:var(--secondary-soft);color:var(--secondary-dark);
+ padding:6px 12px;border-radius:20px;
+ display:inline-flex;align-items:center;gap:5px;
+ transition:transform .12s ease;
+ }
+ .chip-link:hover{transform:translateY(-1px);}
+ .chip-link.full{background:var(--primary-soft);color:var(--primary-dark);font-weight:700;}
+
+ /* ---------- Floating quick-actions menu ---------- */
+ .fab-backdrop{
+ position:fixed;inset:0;
+ background:rgba(34,34,34,0.28);
+ z-index:1600;
+ opacity:0;pointer-events:none;
+ transition:opacity .2s ease;
+ }
+ .fab-backdrop.show{opacity:1;pointer-events:auto;}
+
+ .fab-wrap{
+ position:fixed;
+ right:max(20px, env(safe-area-inset-right));
+ bottom:max(20px, env(safe-area-inset-bottom));
+ z-index:1700;
+ display:flex;flex-direction:column;align-items:flex-end;gap:14px;
+ }
+ .fab-menu{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+ .fab-item{
+ display:flex;align-items:center;gap:12px;
+ text-decoration:none;font-family:inherit;
+ background:none;border:none;padding:0;cursor:pointer;
+ opacity:0;transform:translateY(10px) scale(0.92);
+ pointer-events:none;
+ transition:opacity .18s ease, transform .22s cubic-bezier(0.2,0,0,1);
+ }
+ .fab-wrap.open .fab-item{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+ .fab-wrap.open .fab-item:nth-child(1){transition-delay:.12s;}
+ .fab-wrap.open .fab-item:nth-child(2){transition-delay:.08s;}
+ .fab-wrap.open .fab-item:nth-child(3){transition-delay:.04s;}
+ .fab-wrap.open .fab-item:nth-child(4){transition-delay:0s;}
+ .fab-item-label{
+ background:var(--ink);color:#fff;
+ font-size:13px;font-weight:600;white-space:nowrap;
+ padding:8px 14px;border-radius:20px;
+ box-shadow:var(--shadow);
+ }
+ .fab-item-icon{
+ flex:0 0 auto;
+ width:48px;height:48px;border-radius:50%;
+ background:var(--surface);color:var(--primary);
+ display:flex;align-items:center;justify-content:center;
+ box-shadow:var(--shadow);border:1px solid var(--border-light);
+ transition:background var(--transition), transform var(--transition);
+ }
+ .fab-item-icon .mi{font-size:22px;}
+ .fab-item:hover .fab-item-icon{background:var(--primary-soft);transform:scale(1.06);}
+ .fab-item:hover .fab-item-label{background:var(--primary-dark);}
+
+ .fab-toggle{
+ position:relative;
+ width:60px;height:60px;border-radius:50%;
+ background:var(--primary);color:#fff;border:none;
+ display:flex;align-items:center;justify-content:center;
+ cursor:pointer;
+ box-shadow:0 10px 24px rgba(255,56,92,0.38), var(--shadow);
+ transition:background .2s ease, box-shadow .2s ease, transform .2s cubic-bezier(0.2,0,0,1);
+ }
+ .fab-toggle:hover{transform:scale(1.05);box-shadow:0 12px 28px rgba(255,56,92,0.46), var(--shadow-hover);}
+ .fab-toggle:active{transform:scale(0.95);}
+ .fab-wrap.open .fab-toggle{background:var(--ink);}
+ .fab-toggle .mi{
+ position:absolute;font-size:26px;
+ transition:opacity .2s ease, transform .25s cubic-bezier(0.2,0,0,1);
+ }
+ .fab-icon-menu{opacity:1;transform:rotate(0deg) scale(1);}
+ .fab-icon-close{opacity:0;transform:rotate(-90deg) scale(0.5);}
+ .fab-wrap.open .fab-icon-menu{opacity:0;transform:rotate(90deg) scale(0.5);}
+ .fab-wrap.open .fab-icon-close{opacity:1;transform:rotate(0deg) scale(1);}
+
+ @media (max-width:640px){
+ .fab-wrap{right:16px;bottom:16px;gap:12px;}
+ .fab-toggle{width:54px;height:54px;}
+ .fab-toggle .mi{font-size:24px;}
+ .fab-item-icon{width:44px;height:44px;}
+ .fab-item-label{font-size:12.5px;padding:7px 12px;}
+ }
+
+ footer{
+ margin-top:44px;text-align:center;
+ font-size:11.5px;letter-spacing:0.06em;
+ color:var(--ink-secondary);font-weight:700;
+ padding-top:20px;border-top:1px solid var(--border-light);
+ }
+
+ @media (prefers-reduced-motion: reduce){
+ *, *::before, *::after{
+ animation-duration:0.01ms !important;
+ animation-iteration-count:1 !important;
+ transition-duration:0.01ms !important;
+ scroll-behavior:auto !important;
+ }
+ }
+
+ /* ---------- Day rail: horizontal scroll on anything narrower than wide desktop ---------- */
+ @media (max-width:900px){
+ .day-rail{
+ display:grid;
+ grid-template-columns:repeat(5, 1fr);
+ }
+ .day-pill{padding:8px 5px;text-align:center;}
+ .day-pill .pill-top{justify-content:center;margin-bottom:4px;}
+ .day-pill .route{display:none;}
+ .day-pill .num{height:20px;padding:0 8px;font-size:9.5px;}
+ .pill-date-row{margin-bottom:2px;}
+ .pill-date-main{display:block;font-size:12px;line-height:1.35;overflow-wrap:break-word;word-break:break-word;}
+ .pill-date-weekday{display:block;font-size:9.5px;margin-left:0;margin-top:2px;}
+
+ /* Sticky bar: only the selected day keeps its full detail once compacted */
+ .day-rail.is-stuck .day-pill{padding:9px 6px;}
+ .day-rail.is-stuck .day-pill .pill-top{margin-bottom:0;}
+ .day-rail.is-stuck .day-pill:not(.active) .pill-date-weekday{display:none;margin:0;}
+ .day-rail.is-stuck .day-pill .pill-date-main{font-size:11px;}
+ }
+
+ /* ---------- Mobile responsive ---------- */
+ @media (max-width:640px){
+ .wrap{padding:0 14px 50px;}
+ header.hero{padding:34px 14px 56px;}
+ .hero-skyline{height:64px;}
+ .eyebrow{font-size:11.5px;padding:5px 12px;}
+ h1.title{font-size:clamp(28px,9vw,38px);}
+ .hero-countdown{font-size:11.5px;padding:6px 14px;margin-top:12px;}
+
+ .day-rail{margin-top:-4px;gap:6px;}
+ .day-pill{padding:8px 3px;}
+ .day-pill .num{height:16px;padding:0 6px;font-size:8px;border-radius:9px;}
+ .pill-date-main{font-size:10.5px;}
+ .pill-date-weekday{font-size:8.5px;}
+
+ .section-title{flex-wrap:wrap;margin:24px 0 12px;gap:8px;}
+ .section-title h2{font-size:19px;line-height:1.35;}
+ .section-title .date-chip{font-size:11px;padding:3px 10px;}
+ .weather-chip{font-size:11px;padding:5px 12px;}
+
+ .card-head{font-size:13px;padding:14px 16px 6px;}
+ .tl-list{padding:0 10px;gap:8px;}
+ .tl-item{padding:12px 12px;border-radius:16px;}
+ .tl-activity{font-size:13.5px;}
+ .tl-loc-link{max-width:150px;}
+
+ .leaflet-wrap{padding:0 10px;}
+ #leafletMap{height:240px;}
+ .route-visual{padding:14px 10px 4px;}
+ .map-actions{padding:12px 10px 4px;}
+
+ .expense-form{gap:12px;}
+ .expense-row{flex-wrap:wrap;}
+ .expense-amount{margin-left:auto;}
+ .summary-row{flex-wrap:wrap;row-gap:4px;}
+ .bal-plus,.bal-minus{margin-left:0;}
+
+ .notes-card{padding:16px 16px;}
+ .report-modal{max-height:90vh;}
+ .notes-card ul{padding-left:16px;}
+ }
+
+</style>
+</head>
+<body>
+
+<header class="hero">
+ <svg class="hero-skyline" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+ <rect x="10" y="110" width="35" height="50"/>
+ <rect x="55" y="90" width="28" height="70"/>
+ <rect x="95" y="120" width="32" height="40"/>
+ <rect x="140" y="75" width="24" height="85"/>
+ <rect x="175" y="100" width="40" height="60"/>
+ <rect x="230" y="130" width="26" height="30"/>
+ <rect x="270" y="95" width="30" height="65"/>
+ <rect x="315" y="115" width="22" height="45"/>
+ <rect x="350" y="85" width="34" height="75"/>
+ <rect x="400" y="105" width="28" height="55"/>
+ <rect x="440" y="70" width="20" height="90"/>
+ <rect x="475" y="120" width="30" height="40"/>
+ <rect x="570" y="145" width="60" height="15"/>
+ <rect x="571.5" y="130" width="57" height="15"/>
+ <rect x="573" y="115" width="54" height="15"/>
+ <rect x="574.5" y="100" width="51" height="15"/>
+ <rect x="576" y="85" width="48" height="15"/>
+ <rect x="577.5" y="70" width="45" height="15"/>
+ <rect x="579" y="55" width="42" height="15"/>
+ <rect x="580.5" y="40" width="39" height="15"/>
+ <rect x="598" y="10" width="4" height="30"/>
+ <rect x="700" y="120" width="30" height="40"/>
+ <rect x="740" y="90" width="26" height="70"/>
+ <rect x="775" y="110" width="35" height="50"/>
+ <rect x="820" y="75" width="22" height="85"/>
+ <rect x="855" y="100" width="40" height="60"/>
+ <rect x="905" y="125" width="28" height="35"/>
+ <rect x="945" y="95" width="30" height="65"/>
+ <rect x="985" y="115" width="24" height="45"/>
+ <rect x="1020" y="80" width="32" height="80"/>
+ <rect x="1065" y="105" width="26" height="55"/>
+ <rect x="1100" y="70" width="20" height="90"/>
+ <rect x="1135" y="120" width="30" height="40"/>
+ <rect x="1175" y="100" width="18" height="60"/>
+ </svg>
+ <div class="hero-inner">
+ <div class="eyebrow"><span class="mi mi-sm">flight</span> TAIWAN TRIP</div>
+ <h1 class="title">Taipei 14 &ndash; 18 Oct 2026</h1>
+ <p class="hero-sub">5 days &middot; 3 travelers &middot; Taipei &amp; surroundings</p>
+ <div class="hero-countdown" id="heroCountdown"></div>
+ </div>
+</header>
+
+<div class="wrap">
+ <div class="day-rail" id="dayRail"></div>
+
+ <div id="dayContent">
+ <div class="section-title">
+ <h2 id="dayTitle"></h2>
+ <div class="weather-chip" id="weatherChip"></div>
+ </div>
+
+ <div class="grid">
+ <div class="card map-card">
+ <div class="card-head"><span class="mi mi-sm">map</span> Map</div>
+ <div class="leaflet-wrap"><div id="leafletMap"></div></div>
+ <div class="route-visual" id="routeVisual"></div>
+ <div class="map-actions" id="mapActions"></div>
+ </div>
+
+ <div class="card timeline-card">
+ <div class="card-head"><span class="mi mi-sm">calendar_today</span> Travel Plan</div>
+ <div class="tl-list" id="timeline"></div>
+ </div>
+ </div>
+
+ <div class="card notes-card" id="notesCard"></div>
+ </div>
+
+ <div id="reportOverlay" class="report-overlay" style="display:none;">
+ <div class="report-modal">
+ <div class="report-modal-head">
+ <h3 id="reportModalTitle"><span class="mi">payments</span> Expenses</h3>
+ <button id="reportCloseBtn" type="button" class="report-close"><span class="mi">close</span></button>
+ </div>
+
+ <div id="reportEntryView" class="report-body">
+ <div id="reportEntrySection"></div>
+ <button id="viewSummaryMiniBtn" type="button" class="view-summary-mini-btn"><span class="mi mi-sm">bar_chart</span> View Trip Summary</button>
+ </div>
+
+ <div id="reportSummaryView" class="report-body" style="display:none;">
+ <div id="reportSummarySection"></div>
+ <button id="exportExcelBtn" type="button" class="export-excel-btn"><span class="mi mi-sm">download</span> Export Excel</button>
+ </div>
+ </div>
+ </div>
+
+ <footer id="pageFooter"></footer>
+</div>
+
+<div class="fab-backdrop" id="fabBackdrop"></div>
+<div class="fab-wrap" id="fabWrap">
+ <div class="fab-menu">
+ <a class="fab-item" href="https://drive.google.com/drive/folders/18Oy-RVgZNmj9ZbnTXMsdXBN1idtdkJ7l?usp=sharing" target="_blank" rel="noopener">
+ <span class="fab-item-label">Photo Gallery</span>
+ <span class="fab-item-icon"><span class="mi">photo_library</span></span>
+ </a>
+ <a class="fab-item" href="https://drive.google.com/drive/folders/1nCJuGbE9D7uFA9fI6BpJkW6NFuYY-jBl?usp=sharing" target="_blank" rel="noopener">
+ <span class="fab-item-label">All About Trip Taipei</span>
+ <span class="fab-item-icon"><span class="mi">folder_open</span></span>
+ </a>
+ <button id="dayExpensesBtn" type="button" class="fab-item">
+ <span class="fab-item-label">Expenses</span>
+ <span class="fab-item-icon"><span class="mi">payments</span></span>
+ </button>
+ <button id="viewSummaryFabBtn" type="button" class="fab-item">
+ <span class="fab-item-label">Expense Summary</span>
+ <span class="fab-item-icon"><span class="mi">bar_chart</span></span>
+ </button>
+ </div>
+ <button id="fabToggle" type="button" class="fab-toggle" aria-expanded="false" aria-label="Open quick actions menu">
+ <span class="mi fab-icon-menu">apps</span>
+ <span class="mi fab-icon-close">close</span>
+ </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+const tripData = [
+ {
+ dayNumber: 1,
+ expensesUrl: "https://docs.google.com/spreadsheets/d/1xXDdO5n5-8Hkeg27HuKcyH8iW4WCJQQc/edit?gid=234733324#gid=234733324&range=A1:D1",
+ date: "2026-10-14",
+ dateLabel: "14 Oct 2026 (Wed)",
+ icon: "temple_buddhist",
+ title: "วันไป → วัดหลงซาน → ตลาดว่านหัว",
+ fullRouteUrl: "https://maps.app.goo.gl/C1QBGTa7ECZtd1Az9",
+ timeline: [
+ { time:"04:30–06:00", label:"เตรียมตัว แต่งตัว เช็กของ เก็บกระเป๋ารอบสุดท้าย", transport:"—", locId:null },
+ { time:"06:00–06:50", label:"เดินทางไปสนามบินสุวรรณภูมิ (BKK) ระยะทางประมาณ 35–40 กม.", transport:" รถยนต์ (~50 min)", locId:null },
+ { time:"06:50–07:35", label:"เช็กอิน โหลดกระเป๋า เที่ยวบิน Thai Vietjet Air VZ568 <a href='https://www.flightaware.com/live/flight/TVJ568' target='_blank' rel='noopener' style='color:var(--primary-dark);font-weight:700;text-decoration:underline;'>ดูเรียลไทม์ ↗</a>", transport:" เคาน์เตอร์เช็กอิน", locId:null },
+ { time:"08:55", label:"ออกเดินทางจากสนามบินสุวรรณภูมิ (BKK) เที่ยวบิน Thai Vietjet Air VZ568", transport:" เครื่องบิน", locId:null },
+ { time:"13:45", label:"เครื่องลงสนามบินเถาหยวน (VZ568)", transport:" เครื่องบิน", locId:"airport" },
+ { time:"13:45–15:15", label:"ผ่าน ตม. รับกระเป๋า ซื้อ/เติม EasyCard", transport:" เดินภายในสนามบิน", locId:"airport" },
+ { time:"15:15–16:00", label:"นั่ง Airport MRT Express เข้าเมือง ลงที่ Taipei Main Station", transport:" Airport MRT Express", locId:"taipei_main",
+ schedule:{
+ service:"Airport MRT Express (สาย A) จาก Taoyuan Airport T1 → Taipei Main Station",
+ take:"15:25", next:"15:40", frequency:"ทุก 15 นาที (05:55–22:58)",
+ fullUrl:"https://www.tymetro.com.tw/tymetro-new/en/_pages/travel-guide/timetable.php"
+ },
+ info:{
+ title:"ต้นตำรับชานมไข่มุกโลก แวะได้ระหว่างเปลี่ยนขบวน",
+ sections:[
+ { h:"แนะนำ", items:[
+ "Chun Shui Tang (春水堂) <a href='https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Chun Shui Tang SKM Taipei Station, Taiwan") + "&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านที่ได้รับการยกย่องว่าเป็นต้นตำรับชานมไข่มุก คิดค้นขึ้นครั้งแรกที่ไทจงเมื่อปี 1987 มีสาขาอยู่ชั้น B2 ห้าง SKM (Shin Kong Mitsukoshi) ติดกับ Taipei Main Station พอดี แวะซื้อระหว่างเปลี่ยนขบวนได้เลยไม่ต้องออกนอกเส้นทาง"
+ ]}
+ ]
+ }
+ },
+ { time:"16:00–16:15", label:"ต่อแท็กซี่จาก Taipei Main Station ไปที่พัก", transport:" แท็กซี่ (~100–150 NTD)", locId:"hotel" },
+ { time:"16:15–17:30", label:"เช็กอิน เก็บกระเป๋า นั่งพักและเปลี่ยนเสื้อผ้า", transport:"—", locId:"hotel", main:true },
+ { time:"17:30–17:50", label:"เดินทางไปวัดหลงซาน", transport:" Blue Line: Ximen (西門) → Longshan Temple (龍山寺) · 1 สถานี", locId:"longshan" },
+ { time:"17:50–18:50", label:"ไหว้พระและเดินชมวัดหลงซาน", transport:" เดินชม", locId:"longshan", main:true,
+ info:{
+ title:"วิธีไหว้ & เครื่องรางที่วัดหลงซาน",
+ sections:[
+ { h:"วิธีไหว้", items:[
+ "จุดธูปที่โรงธูปหน้าวัด (ปกติ 1 ชุดมี 7-8 ดอก)",
+ "เริ่มไหว้จากวิหารหลัก (เจ้าแม่กวนอิม) ก่อน แล้ววนไหว้เทพองค์อื่นรอบวัดตามเข็มนาฬิกา",
+ "ปักธูปทีละกระถางตามจุดที่เดินผ่าน ไม่ต้องรีบ เดินตามคนในพื้นที่ได้เลย"
+ ]},
+ { h:"เครื่องรางแนะนำ", items:[
+ "ศาลเจ้าพ่อเยว่เหล่า (月老) ด้านหลังวัด — จุดขอพรเรื่องความรักชื่อดังของไต้หวัน มีสายสิญจน์แดงและเหรียญคู่รักให้บูชา",
+ "เครื่องรางเสริมดวงทั่วไปมีขายบริเวณจุดบริจาคใกล้ทางออก"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "เข้าชมฟรี ไม่มีค่าเข้า",
+ "แต่งกายสุภาพ พูดคุยเสียงเบา",
+ "บางจุดห้ามถ่ายภาพเทพเจ้าโดยตรง สังเกตป้ายแจ้งเตือน"
+ ]}
+ ]
+ }
+ },
+ { time:"18:50–21:00", label:"เดินกินตลาดว่านหัว (ตลาดหัวซี)", transport:" เดินเท้า (~5 นาที)", locId:"wanhua", main:true,
+ info:{
+ title:"ร้านเด็ด & รีวิวตลาดหัวซี",
+ sections:[
+ { h:"ร้านแนะนำ", items:[
+ "Wang's Broth <a href='https://www.google.com/maps/search/?api=1&query=Wang%27s%20Broth%20Huaxi%20Street%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านหมูตุ๋น แนะนำเมนูข้าวหน้าหมูตุ๋น",
+ "金好吃純正花枝羹 <a href='https://www.google.com/maps/search/?api=1&query=%E9%87%91%E5%A5%BD%E5%90%83%E7%B4%94%E6%AD%A3%E8%8A%B1%E6%9E%9D%E7%BE%B9%20Huaxi%20Street%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านบะหมี่หมึกกรุบ"
+ ]},
+ { h:"ทิปการเดิน", items:[
+ "เข้าทางซุ้มประตูฝั่ง Guangzhou St. เดินตรงไปจะทะลุใกล้วัดหลงซานพอดี",
+ "ช่วงหัวค่ำคนเยอะและถนนค่อนข้างแคบ แนะนำไปแต่เนิ่น ๆ ตามเวลาในแผน"
+ ]}
+ ]
+ }
+ },
+ { time:"21:00–21:30", label:"เดินทางกลับโรงแรม พักผ่อน", transport:" Blue Line: Longshan Temple (龍山寺) → Ximen (西門) · 1 สถานี / แท็กซี่", locId:"hotel" },
+ ],
+ locations: [
+ { id:"airport", name:"Taoyuan International Airport", lat:25.0797, lng:121.2342 },
+ { id:"taipei_main", name:"Taipei Main Station (transfer point)", searchName:"Taipei Main Station", lat:25.0478, lng:121.5170 },
+ { id:"hotel", name:"LIN INN – Wan Nian (near Ximending)", searchName:"LIN INN Wan Nian Taipei", lat:25.04351, lng:121.50589 },
+ { id:"longshan", name:"Longshan Temple", lat:25.0371, lng:121.4998 },
+ { id:"wanhua", name:"Huaxi St. Night Market", lat:25.0354, lng:121.4999 },
+ ],
+ notes:[
+ "เตรียมเงินสด NTD ติดตัวไว้บ้าง แลกที่เคาน์เตอร์แลกเงินในสนามบินหรือกด ATM หลังผ่าน ตม.",
+ "ซื้อ/เติม EasyCard ที่เคาน์เตอร์ในสนามบินเลย ใช้ขึ้น MRT รถเมล์ และจ่ายร้านสะดวกซื้อได้ทันที",
+ "จัดการซิมเน็ต/eSIM หรือรับ WiFi พกพา ตั้งแต่อยู่ในสนามบิน จะได้มีเน็ตใช้ทันทีตอนออกมาข้างนอก",
+ "ร้านสะดวกซื้อใกล้ที่พักที่สุด: 7-Eleven บนถนน Xining S. Rd. เดินจากที่พักประมาณ 2 นาที",
+ "อากาศเดือน ต.ค. เย็นสบาย ~22–28°C พกเสื้อคลุมบาง ๆ ไปด้วย เผื่อฝนตกช่วงเย็น"
+ ],
+ photoSpots: [
+ {
+ loc:"Taoyuan International Airport",
+ tag:"เริ่มทริป",
+ tip:"ถ่ายรูปหน้าป้ายชื่อสนามบิน หรือมุม departure board เก็บไว้เป็นรูปแรกของทริป",
+ illustration:"<svg viewBox='0 0 300 225' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='225' fill='var(--primary-soft)'/><circle cx='240' cy='45' r='26' fill='var(--secondary-soft)' opacity='0.7'/><path d='M0,175 Q75,150 150,170 T300,160 V225 H0 Z' fill='var(--secondary)' opacity='0.5'/><g transform='translate(150,110) rotate(-25)'><path d='M-70,0 L60,0 L75,-6 L60,-12 L-70,-12 L-85,-24 L-98,-24 L-88,-12 L-100,-12 L-100,0 L-88,0 L-98,12 L-85,12 Z' fill='var(--primary-dark)'/><path d='M-20,-12 L-5,-38 L8,-38 L0,-12 Z' fill='var(--primary-dark)'/><path d='M-20,0 L-5,26 L8,26 L0,0 Z' fill='var(--primary-dark)'/></g><path d='M20,190 Q40,178 65,188 T115,186' stroke='var(--primary-dark)' stroke-width='2' fill='none' stroke-dasharray='3 5' opacity='0.6'/></svg>",
+ mapQuery:"Taoyuan International Airport"
+ },
+ {
+ loc:"Ximending (near hotel)",
+ tag:"เช็กอิน",
+ tip:"ระหว่างเดินไปโรงแรม แวะถ่ายรูปทางม้าลายสีรุ้งชื่อดังของย่านซีเหมินติงได้ เป็นจุดถ่ายรูปยอดฮิตของนักท่องเที่ยว",
+ illustration:"<svg viewBox='0 0 300 225' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='225' fill='var(--primary-soft)'/><rect x='0' y='0' width='300' height='120' fill='var(--secondary-soft)'/><rect x='20' y='40' width='55' height='80' fill='var(--primary-dark)' opacity='0.85'/><rect x='90' y='20' width='45' height='100' fill='var(--secondary-dark)' opacity='0.8'/><rect x='150' y='55' width='60' height='65' fill='var(--primary)' opacity='0.85'/><rect x='225' y='30' width='50' height='90' fill='var(--secondary-dark)' opacity='0.7'/><g transform='translate(20,150)'><rect x='0' y='0' width='30' height='60' fill='var(--primary-dark)'/><rect x='30' y='0' width='30' height='60' fill='var(--secondary)'/><rect x='60' y='0' width='30' height='60' fill='var(--secondary-dark)'/><rect x='90' y='0' width='30' height='60' fill='var(--primary-dark)'/><rect x='120' y='0' width='30' height='60' fill='var(--secondary)'/><rect x='150' y='0' width='30' height='60' fill='var(--secondary-dark)'/><rect x='180' y='0' width='30' height='60' fill='var(--primary-dark)'/><rect x='210' y='0' width='30' height='60' fill='var(--secondary)'/><rect x='240' y='0' width='30' height='60' fill='var(--secondary-dark)'/><rect x='270' y='0' width='30' height='60' fill='var(--primary-dark)'/></g></svg>",
+ mapQuery:"Ximending Taipei"
+ },
+ {
+ loc:"Longshan Temple",
+ tag:"เย็น · แสงทอง",
+ tip:"ยืนหน้าประตูหลัก ถ่ายมุมต่ำเก็บหลังคาแกะสลักกับโคมไฟแดงในเฟรมเดียวกัน ช่วง 17:50–18:50 ไฟวัดเริ่มเปิดพอดี แสงจะสวยแบบทไวไลท์",
+ illustration:"<svg viewBox='0 0 300 225' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='225' fill='var(--ink)'/><rect width='300' height='225' fill='var(--secondary-dark)' opacity='0.25'/><circle cx='245' cy='45' r='22' fill='var(--secondary-soft)' opacity='0.85'/><g fill='var(--primary-dark)'><ellipse cx='60' cy='90' rx='16' ry='20'/><rect x='52' y='105' width='16' height='10'/><ellipse cx='100' cy='80' rx='16' ry='20'/><rect x='92' y='95' width='16' height='10'/><ellipse cx='140' cy='90' rx='16' ry='20'/><rect x='132' y='105' width='16' height='10'/></g><path d='M40,190 L40,150 Q40,130 70,130 L130,130 Q160,130 160,150 L160,190 Z' fill='var(--primary-dark)' opacity='0.9'/><path d='M20,132 L150,132 L165,110 L180,132 L280,132 L260,150 L20,150 Z' fill='var(--secondary)'/><path d='M60,132 L60,110 L140,110 L140,132 Z' fill='var(--primary)' opacity='0.9'/><rect x='90' y='150' width='20' height='40' fill='var(--ink)' opacity='0.7'/></svg>",
+ mapQuery:"Longshan Temple Taipei"
+ },
+ {
+ loc:"Huaxi St. Night Market",
+ tag:"กลางคืน · สตรีทฟู้ด",
+ tip:"ถ่ายจากปากทางเข้าตลาดให้เห็นป้ายไฟและคนเดินเป็นเส้นนำสายตา อย่าลืมเก็บภาพใกล้จานอาหาร/ป้ายร้านสีสันจัดด้วย",
+ illustration:"<svg viewBox='0 0 300 225' xmlns='http://www.w3.org/2000/svg'><rect width='300' height='225' fill='var(--ink)'/><rect width='300' height='225' fill='var(--primary)' opacity='0.12'/><path d='M0,60 L30,80 L60,60 L90,80 L120,60 L150,80 L180,60 L210,80 L240,60 L270,80 L300,60 L300,50 L0,50 Z' fill='var(--primary-dark)'/><g><ellipse cx='45' cy='105' rx='14' ry='18' fill='var(--secondary)'/><rect x='40' y='120' width='10' height='8' fill='var(--primary-dark)'/><ellipse cx='105' cy='100' rx='14' ry='18' fill='var(--primary)'/><rect x='100' y='115' width='10' height='8' fill='var(--primary-dark)'/><ellipse cx='165' cy='108' rx='14' ry='18' fill='var(--secondary)'/><rect x='160' y='123' width='10' height='8' fill='var(--primary-dark)'/><ellipse cx='225' cy='100' rx='14' ry='18' fill='var(--primary)'/><rect x='220' y='115' width='10' height='8' fill='var(--primary-dark)'/></g><rect x='20' y='160' width='260' height='45' rx='4' fill='var(--secondary-dark)' opacity='0.5'/><rect x='20' y='160' width='260' height='8' fill='var(--secondary)'/></svg>",
+ mapQuery:"Huaxi Street Tourist Night Market Taipei"
+ },
+ ]
+ },
+ {
+ dayNumber: 2,
+ expensesUrl: "https://docs.google.com/spreadsheets/d/1xXDdO5n5-8Hkeg27HuKcyH8iW4WCJQQc/edit?gid=439814506#gid=439814506&range=A1:D1",
+ date: "2026-10-15",
+ dateLabel: "15 Oct 2026 (Thu)",
+ icon: "pets",
+ title: "Houtong Cat Village → Heping Island → Zhengbin Fishing Port → Ningxia Night Market",
+ timeline: [
+ { time:"07:10", label:"ออกจากโรงแรม เรียก Taxi จาก LIN INN – Wan Nian ไป Taipei Main Station", transport:" แท็กซี่", locId:"hotel" },
+ { time:"07:20–07:50", label:"ซื้ออาหารเช้า แล้วไปชานชาลา TRA ที่ Taipei Main Station", transport:" เดินในสถานี", locId:"taipei_main" },
+ { time:"08:00–09:10", label:"รถไฟไป Houtong — เลือก TRA Local Train ที่จอด Houtong Station บางขบวนตรง บางช่วงอาจต้องเปลี่ยนที่ Ruifang", transport:" TRA Local Train", locId:"houtong_station",
+ info:{
+ title:"เรื่องที่ควรรู้เรื่องรถไฟ",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "ยังไม่ควรล็อกเป็นเลขขบวนตอนนี้ แนะนำเลือกช่วงออกจาก Taipei Main ประมาณ 08:00–08:20 น.",
+ "เช็กตารางจริงของ TRA อีกครั้งก่อนเดินทาง 7–14 วัน"
+ ]}
+ ]
+ }
+ },
+ { time:"09:10–12:15", label:"Houtong Cat Village — เดินตามป้าย Cat Village ข้ามสะพานแมวไปฝั่งหมู่บ้านได้เลย ไม่ต้องเดินสำรวจโซนเหมืองทั้งหมด", transport:" เดินชม", locId:"houtong_cat_village", main:true,
+ info:{
+ title:"Houtong Cat Village",
+ sections:[
+ { h:"แนะนำ", items:[
+ "เดินเล่นในหมู่บ้าน ถ่ายรูปแมวและบ้านเรือน",
+ "แวะคาเฟ่หรือกินข้าวกล่องคนงานเหมืองเป็นมื้อเช้า/กลางวัน"
+ ]},
+ { h:"ข้อควรระวัง", items:[
+ "ไม่อุ้ม ไล่จับ หรือใช้แฟลชใส่แมว",
+ "วันฝนตกอาจเจอแมวน้อยลงเพราะน้องหลบอยู่ในบ้าน",
+ "เปิดเที่ยวได้ตลอดปี มีทั้งหมู่บ้านแมว คาเฟ่ ร้านของฝาก และร่องรอยเมืองเหมืองเก่า"
+ ]}
+ ]
+ }
+ },
+ { time:"12:15–12:45", label:"เดินทางไป Heping Island — แนะนำ Taxi ตรงจาก Houtong สำหรับ 3 คน (~20–30 นาที)", transport:" แท็กซี่ (~20–30 นาที)", locId:"heping_island",
+ info:{
+ title:"ทางเลือกการเดินทาง",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "แนะนำเรียกรถผ่านแอปก่อนเดินกลับถึงสถานี หรือให้คาเฟ่/ศูนย์บริการนักท่องเที่ยวช่วยโทรเรียก",
+ "แผนสำรอง: รถไฟ Houtong → Badouzi แล้วต่อ Bus 1579 หรือ T99 แต่ต้องเช็กรอบละเอียด ไม่เหมาะเป็นแผนหลัก"
+ ]}
+ ]
+ }
+ },
+ { time:"12:45–15:15", label:"Heping Island Park — เดินชมทะเล โขดหิน ทางเดินชายฝั่ง และพักคาเฟ่ (ย่อเหลือ 2.5 ชม. เพื่อให้ทันรถไฟ)", transport:" เดินชม/พักคาเฟ่", locId:"heping_island", main:true,
+ info:{
+ title:"Heping Island Park",
+ sections:[
+ { h:"แนะนำ", items:[
+ "เดินเส้นทางริมชายฝั่ง ชมโขดหินและทะเล แล้วพักคาเฟ่หรือบริเวณ Visitor Center"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "เดือนตุลาคมเปิด 08:00–19:00 น. จำหน่ายตั๋วถึง 18:00 น.",
+ "ค่าเข้าผู้ใหญ่ตามข้อมูลล่าสุด NT$120 (ควรเช็คอีกครั้งก่อนไปจริง)",
+ "แนะนำรองเท้าพื้นยึดเกาะดี เพราะบริเวณชายฝั่งอาจลื่น และไม่ออกนอกเขตที่เจ้าหน้าที่กำหนด"
+ ]}
+ ]
+ }
+ },
+ { time:"15:15–15:30", label:"ไป Zhengbin Fishing Port", transport:" แท็กซี่ระยะสั้น", locId:"zhengbin" },
+ { time:"15:30–16:25", label:"Zhengbin Fishing Port — ถ่ายรูปตึกสีและท่าเรือ", transport:" ถ่ายรูป", locId:"zhengbin", main:true,
+ info:{
+ title:"ทิปถ่ายรูป Zhengbin",
+ sections:[
+ { h:"แนะนำ", items:[
+ "ถ่ายรูปตึกหลากสีจากฝั่งตรงข้าม",
+ "เก็บภาพเรือและเงาสะท้อนในน้ำ",
+ "เดินริมน้ำสั้น ๆ แล้วไปต่อ"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "เปิดเป็นพื้นที่สาธารณะตลอด 24 ชั่วโมง"
+ ]}
+ ]
+ }
+ },
+ { time:"16:25–16:40", label:"Taxi จาก Zhengbin ไปสถานี Keelung", transport:" แท็กซี่", locId:"keelung_station" },
+ { time:"16:40–17:30", label:"TRA จาก Keelung → Taipei Main Station", transport:" TRA Local Train", locId:"taipei_main" },
+ { time:"17:30–18:00", label:"เดินจาก Taipei Main Station ไป Ningxia Night Market (เผื่อเวลาเดินชิล ๆ)", transport:" เดินเท้า (~10–15 นาที)", locId:"ningxia" },
+ { time:"18:00–20:05", label:"มื้อเย็นและเดินเล่น Ningxia Night Market", transport:" เดินกินมื้อเย็น", locId:"ningxia", main:true,
+ info:{
+ title:"Ningxia Night Market — ของกินแนะนำ",
+ sections:[
+ { h:"เมนูแนะนำ", items:[
+ "Yuan Huan Pien ไข่เจียวหอยนางรม (ติด Michelin Bib Gourmand หลายปีติดต่อกัน)",
+ "ลูโร่ฟ่าน (ข้าวหมูพะโล้)",
+ "บ๊ะจ่างหรือซุปตับหมู",
+ "มันหวานทอดลูกกลม (Sweet Potato Balls) — ของกินเล่นเฉพาะย่านนี้ ไม่มีขายที่อื่น",
+ "ของหวาน/น้ำแข็งไสท้องถิ่น"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "ตลาดเปิดทุกวัน ประมาณ 17:00–23:30 น.",
+ "ยาวประมาณ 300 เมตร เดินไม่หลงง่าย ๆ",
+ "ใกล้ Taipei Main Station ที่สุดในบรรดาตลาดกลางคืนของไทเป"
+ ]},
+ { h:"แผนสำรอง (ถ้าไม่อยากกินตลาด)", items:[
+ "New Mala Hotpot Ximen <a href='https://www.google.com/maps/search/?api=1&query=New%20Mala%20Hotpot%20Ximen%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — หม้อไฟหมาล่า อยู่ใกล้ที่พักแถว Ximending สะดวกถ้าเดินทางมาถึงช้ากว่าแผนหรืออยากกินหม้อไฟอุ่น ๆ แทน"
+ ]}
+ ]
+ }
+ },
+ { time:"20:05–20:35", label:"นั่งแท็กซี่กลับที่พักเลย", transport:" แท็กซี่", locId:"hotel" },
+ ],
+ locations: [
+ { id:"hotel", name:"LIN INN – Wan Nian (near Ximending)", searchName:"LIN INN Wan Nian Taipei", lat:25.04351, lng:121.50589 },
+ { id:"taipei_main", name:"Taipei Main Station", lat:25.0478, lng:121.5170 },
+ { id:"houtong_station", name:"Houtong Station", lat:25.0888, lng:121.8221 },
+ { id:"houtong_cat_village", name:"Houtong Cat Village", lat:25.08708, lng:121.82661 },
+ { id:"heping_island", name:"Heping Island Park", lat:25.16100, lng:121.76394 },
+ { id:"zhengbin", name:"Zhengbin Fishing Port (Colorful Houses)", searchName:"Zhengbin Fishing Port Keelung", lat:25.15194, lng:121.76639 },
+ { id:"keelung_station", name:"Keelung Station", lat:25.1320, lng:121.7398 },
+ { id:"ningxia", name:"Ningxia Night Market", lat:25.0578, lng:121.5133 },
+ ],
+ notes:[
+ "วันนี้ใช้ Taxi เฉพาะช่วงที่คุ้มเวลา (Houtong → Heping Island → Zhengbin → Keelung Station) ส่วนขาไปใช้รถไฟ TRA และขากลับต่อรถไฟมา Taipei Main Station ก่อนไปกิน Ningxia Night Market",
+ "เผื่อเงินสดสำหรับค่า Taxi หลายช่วง และค่าเข้า Heping Island Park (~NT$120/คน)",
+ "พกร่มหรือเสื้อกันลม เพราะ Heping Island และ Zhengbin เป็นพื้นที่ริมทะเล ลมแรง",
+ "แนะนำรองเท้าที่เดินสบายและพื้นยึดเกาะดี เพราะมีเดินชายฝั่งที่อาจลื่น"
+ ],
+ photoSpots: []
+ },
+ {
+ dayNumber: 3,
+ expensesUrl: "https://docs.google.com/spreadsheets/d/1xXDdO5n5-8Hkeg27HuKcyH8iW4WCJQQc/edit?gid=1391490501#gid=1391490501&range=A1:D1",
+ date: "2026-10-16",
+ dateLabel: "16 Oct 2026 (Fri)",
+ icon: "restaurant",
+ title: "Fish Market → เดินเล่นใน Taipei → Raohe Night Market",
+ timeline: [
+ { time:"08:00", label:"ออกจาก LIN INN – Wan Nian เรียก Taxi ไป An An Seafood", transport:" แท็กซี่", locId:"hotel" },
+ { time:"08:30–09:45", label:"กินมื้อเช้าควบมื้อสายที่ An An Seafood", transport:" มื้อเช้า/สาย", locId:"an_an_seafood", main:true },
+ { time:"09:45–10:05", label:"เดินทางไป Taipei Fish Market", transport:" เดินเท้า", locId:"fish_market" },
+ { time:"10:05–11:15", label:"เดินดู Taipei Fish Market / Addiction Aquatic Development", transport:" เดินชม", locId:"fish_market", main:true,
+ info:{
+ title:"Addiction Aquatic Development",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "ตลาดปลาไฮเอนด์ มีทั้งซูชิบาร์ยืนกิน, ร้านซาชิมิ, ซูเปอร์มาร์เก็ตอาหารทะเล",
+ "เปิดตามข้อมูลปัจจุบันประมาณ 06:00–24:00 น. (ร้านย่อยแต่ละร้านเวลาไม่เท่ากัน)",
+ "โซนซื้อของส่วนใหญ่รับเงินสดเท่านั้น"
+ ]}
+ ]
+ }
+ },
+ { time:"11:15–11:30", label:"Taxi ไป Simple Kaffa Huashan Flagship Store", transport:" แท็กซี่", locId:"simple_kaffa" },
+ { time:"11:30–11:50", label:"กินกาแฟที่ Simple Kaffa Huashan Flagship Store", transport:" พักดื่มกาแฟ", locId:"simple_kaffa", main:true,
+ info:{
+ title:"Simple Kaffa Huashan Flagship Store",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "ร้านกาแฟของแชมป์บาริสต้าโลก (World Barista Championship) อยู่ในย่าน Huashan 1914 เดินถึงง่าย",
+ "แนะนำเมนูซิกเนเจอร์ของร้าน เผื่อเวลาต่อคิวช่วงคนแน่น"
+ ]}
+ ]
+ }
+ },
+ { time:"11:50–12:10", label:"Taxi ไปย่าน Zhongshan", transport:" แท็กซี่", locId:"zhongshan" },
+ { time:"12:10–14:15", label:"เดินเล่นย่าน Zhongshan — Chifeng Street, ร้านเสื้อผ้า/ดีไซน์, แวะคาเฟ่, เดิน Xinzhongshan Linear Park และซื้อของฝากที่ Eslite Spectrum Nanxi", transport:" เดินเล่น", locId:"zhongshan", main:true,
+ info:{
+ title:"ย่าน Zhongshan — มีอะไรน่าสนใจ",
+ sections:[
+ { h:"จุดแวะแนะนำ", items:[
+ "Chifeng Street <a href='https://www.google.com/maps/search/?api=1&query=Chifeng%20Street%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ถนนสายเล็กเต็มไปด้วยร้านดีไซน์และคาเฟ่อินดี้",
+ "Mian Xian Ding <a href='https://www.google.com/maps/search/?api=1&query=Mian%20Xian%20Ding%20Zhongshan%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — เส้นหมี่ซุปข้นสไตล์ไต้หวัน ของกินเล่นแถว Chifeng Street",
+ "Meincho <a href='https://www.google.com/maps/search/?api=1&query=Meincho%20Ramen%20Zhongshan%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ราเมนซุปกระดูกปลาซาร์ดีน ร้านดังที่คนต่อคิว",
+ "MONTEUR Cafe <a href='https://www.google.com/maps/search/?api=1&query=MONTEUR%20Cafe%20Zhongshan%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — คาเฟ่ของหวานสไตล์โมเดิร์น ตกแต่งขาวสะอาดตา เมนูเด่นคือโรลเค้ก ครีมพัฟ ทีรามิสุ",
+ "Xinzhongshan Linear Park <a href='https://www.google.com/maps/search/?api=1&query=Xinzhongshan%20Linear%20Park%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — สวนสาธารณะยาวเดินเล่นสบาย ๆ",
+ "Eslite Spectrum Nanxi <a href='https://www.google.com/maps/search/?api=1&query=Eslite%20Spectrum%20Nanxi%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านหนังสือ/ไลฟ์สไตล์ เหมาะซื้อของฝาก\",\n \"Pai Pai Cannoli & Gelato <a href='https://www.google.com/maps/search/?api=1&query=Pai%20Pai%20Cannoli%20%26%20Gelato%20Zhongshan%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\\\"mi mi-sm\\\" style=\\\"font-size:14px\\\">location_on</span></a> — ร้านคานอลี่และเจลาโต้"
+ ]}
+ ]
+ }
+ },
+ { time:"14:15–14:30", label:"Taxi ไป Huashan 1914 Creative Park", transport:" แท็กซี่", locId:"huashan" },
+ { time:"14:30–16:00", label:"เดิน Huashan ถ่ายรูป ดูร้านดีไซน์ ป๊อปอัป และซื้อของ", transport:" เดินชม", locId:"huashan", main:true,
+ info:{
+ title:"Huashan 1914 Creative Park",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "พื้นที่กลางแจ้งเปิดตลอด 24 ชั่วโมง",
+ "ร้านค้าและงานอีเวนต์ต่าง ๆ เปิดตามเวลาของแต่ละแห่ง (ควรเช็คงาน/ร้านที่สนใจล่วงหน้า)"
+ ]}
+ ]
+ }
+ },
+ { time:"16:00–16:20", label:"เดินทางไปย่าน Yongkang Street, Da'an District", transport:" แท็กซี่", locId:"east_district" },
+ { time:"16:20–17:00", label:"เดินเล่น/ช้อปย่าน Yongkang Street แบบสั้น ๆ", transport:" เดินช้อป", locId:"east_district", main:true,
+ info:{
+ title:"Yongkang Street, Da'an District",
+ sections:[
+ { h:"จุดแวะแนะนำ", items:[
+ "Din Tai Fung สาขาแรก <a href='https://www.google.com/maps/search/?api=1&query=Din%20Tai%20Fung%20Original%20Yongkang%20Street%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านเสี่ยวหลงเปาต้นตำรับ คิวยาวเป็นปกติ",
+ "Yongkang Beef Noodles <a href='https://www.google.com/maps/search/?api=1&query=Yong%20Kang%20Beef%20Noodles%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — บะหมี่เนื้อตุ๋นเลื่องชื่อของย่านนี้",
+ "มะม่วงน้ำแข็งไส — ของหวานซิกเนเจอร์ที่ต้องลองถ้ามาย่านนี้",
+ "Yongkang Park — สวนเล็ก ๆ กลางย่าน เดินเล่นพักได้ระหว่างช้อป",
+ "ร้านของฝาก/บูทีคเล็ก ๆ กระจายอยู่ตามซอยรอบสวน"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "เป็นแผนสำรองแทน Zhongxiao Dunhua / East District เดิม ใกล้ Dongmen MRT (สายสีแดง)",
+ "หลายร้านปิดวันจันทร์ ควรเช็คก่อนไปถ้าตรงกับวันนั้น"
+ ]}
+ ]
+ }
+ },
+ { time:"17:00–17:20", label:"Taxi ไปมุมถ่ายรูป Taipei 101 แถว Takemura Izakaya", transport:" แท็กซี่", locId:"taipei101_view" },
+ { time:"17:20–17:50", label:"ถ่ายรูป Taipei 101 ช่วงแสงเย็นและตึกเริ่มเปิดไฟ", transport:" ถ่ายรูป", locId:"taipei101_view", main:true,
+ info:{
+ title:"ตรอกลับถ่ายรูป Taipei 101 (ไม่ต้องขึ้นตึก)",
+ sections:[
+ { h:"ที่อยู่แม่นยำ", items:[
+ "No. 2, Alley 1, Lane 253, Songren Road, Xinyi District (ตรอกข้าง Takemura Izakaya)",
+ "เดินจากสถานี Taipei 101/World Trade Center ประมาณ 5–10 นาที"
+ ]},
+ { h:"ทิปถ่ายภาพ", items:[
+ "ยืนที่หน้าทางเข้าร้าน Takemura Izakaya (ป้ายโคมแดง) แล้วหันหน้าเข้าไปในตรอก (หันหลังให้ถนน Songren Road) — ตึก 101 จะโผล่เป็นกรอบสุดปลายตรอกตรงหน้าพอดี",
+ "หันหน้าไปทางทิศเหนือ (เอียงตะวันตกเฉียงเหนือนิดเดียว) ตึก 101 จะอยู่ตรงหน้าพอดี",
+ "ช่วง 17:20–17:50 เป็นเวลาทองจริง ๆ ท้องฟ้ายังสว่างพอมีสี แต่ตึกเริ่มเปิดไฟแล้ว",
+ "ตรอกค่อนข้างแคบ มีรถวิ่งผ่านบ้าง ระวังเวลายืนถ่ายกลางทาง",
+ "<a href='https://maps.app.goo.gl/E3d6dwUzKpKVm4tf8' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span> ดูมุมกล้องจริงจาก Street View ↗</a>"
+ ]},
+ { h:"ถ้าอยากได้วิวสูงกว่านี้", items:[
+ "Elephant Mountain (Xiangshan) <a href='https://www.google.com/maps/search/?api=1&query=Elephant%20Mountain%20Xiangshan%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — จุดชมวิวฟรียอดฮิตสุด เห็นตึก 101 กับเมืองทั้งเมือง แต่ต้องเดินขึ้นเขาเพิ่ม ~30–40 นาที ไม่รวมในแพลนนี้เพราะเวลาจำกัด"
+ ]}
+ ]
+ }
+ },
+ { time:"17:50–18:10", label:"Taxi ไป Raohe Street Night Market", transport:" แท็กซี่", locId:"raohe" },
+ { time:"18:10–20:30", label:"เดินกินมื้อเย็นที่ตลาด Raohe (เปิดช่วงประมาณ 17:00–00:00 น.)", transport:" เดินกินมื้อเย็น", locId:"raohe", main:true,
+ info:{
+ title:"Raohe Street Night Market",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "เข้าทางซุ้มประตูใกล้ Ciyou Temple ฝั่ง Songshan MRT",
+ "ของขึ้นชื่อ: เปาะเปี๊ยะไอศกรีม, ก้อนพริกไทยอบเตาถ่าน (胡椒餅), เกี๊ยวน้ำ",
+ "เปิดประมาณ 17:00–00:00 น."
+ ]}
+ ]
+ }
+ },
+ { time:"20:30–21:10", label:"MRT จาก Songshan → Ximen สายสีเขียวตรง ไม่ต้องเปลี่ยนสาย", transport:" MRT สายสีเขียว (Green Line)", locId:"hotel" },
+ { time:"21:20", label:"กลับถึงโรงแรม", transport:"—", locId:"hotel" },
+ ],
+ locations: [
+ { id:"hotel", name:"LIN INN – Wan Nian (near Ximending)", searchName:"LIN INN Wan Nian Taipei", lat:25.04351, lng:121.50589 },
+ { id:"fish_market", name:"Taipei Fish Market / Addiction Aquatic Development", searchName:"Addiction Aquatic Development Taipei", lat:25.0693, lng:121.5453 },
+ { id:"an_an_seafood", name:"An An Seafood", lat:25.0700, lng:121.5460 },
+ { id:"zhongshan", name:"Zhongshan District (Chifeng St.)", searchName:"Chifeng Street Taipei", lat:25.0583, lng:121.5205 },
+ { id:"huashan", name:"Huashan 1914 Creative Park", lat:25.0444, lng:121.5296 },
+ { id:"simple_kaffa", name:"Simple Kaffa Huashan Flagship Store", searchName:"Simple Kaffa Huashan Flagship Store Taipei", lat:25.0441, lng:121.5301 },
+ { id:"east_district", name:"Yongkang Street, Da'an District", searchName:"Yongkang Street Da'an Taipei", lat:25.0331, lng:121.5294 },
+ { id:"taipei101_view", name:"Taipei 101 Photo Alley (Songren Rd.)", searchName:"Lane 253 Songren Road Xinyi", lat:25.0300, lng:121.5665 },
+ { id:"raohe", name:"Raohe Street Night Market", lat:25.0504, lng:121.5773 },
+ ],
+ notes:[
+ "วันนี้ใช้ Taxi เชื่อมระหว่างย่านเป็นหลัก เพราะแต่ละจุดอยู่ห่างกันพอสมควร",
+ "An An Seafood ร้านเล็ก อาจต้องรอคิวช่วงเช้า เผื่อเวลาไว้บ้าง",
+ "เตรียมกล้อง/มือถือชาร์จเต็มไว้ช่วงเย็น เพราะมีจุดถ่ายรูป Taipei 101 กับตลาดกลางคืนต่อกัน"
+ ],
+ photoSpots: []
+ },
+ {
+ dayNumber: 4,
+ expensesUrl: "https://docs.google.com/spreadsheets/d/1xXDdO5n5-8Hkeg27HuKcyH8iW4WCJQQc/edit?gid=1275011868#gid=1275011868&range=A1:D1",
+ date: "2026-10-17",
+ dateLabel: "17 Oct 2026 (Sat)",
+ icon: "landscape",
+ title: "น้ำตก Wulai → ทะเลสาบ Yun Hsien → เดินเล่น Ximending",
+ timeline: [
+ { time:"07:20", label:"ออกจาก LIN INN – Wan Nian", transport:" ออกเดินทาง", locId:"hotel" },
+ { time:"07:30–08:05", label:"นั่ง MRT จาก Ximen → Xindian สายสีเขียว ตรงไม่ต้องเปลี่ยนสาย", transport:" MRT สายสีเขียว (Green Line)", locId:"xindian_station" },
+ { time:"08:05–08:30", label:"เข้าห้องน้ำ ซื้อเครื่องดื่ม และรอ Bus 849", transport:" พักที่สถานี", locId:"xindian_station" },
+ { time:"08:30–09:30", label:"นั่ง Bus 849 ไปลงป้ายสุดท้าย Wulai", transport:" Bus 849 (ทุก 15–20 นาที)", locId:"wulai_old_street" },
+ { time:"09:30–12:00", label:"เดินชม Wulai Old Street กินมื้อเช้าควบมื้อกลางวันเบา ๆ แล้วนั่งรถรางไปน้ำตกอู๋ไหล เดินเล่น/พักคาเฟ่ริมน้ำตกแบบสบาย ๆ", transport:" เดินชม + Wulai Scenic Train", locId:"wulai_waterfall", main:true,
+ info:{
+ title:"Wulai Old Street & น้ำตก — สรุปย่อ",
+ sections:[
+ { h:"ของกินแนะนำ (3 คน)", items:[
+ "ไส้กรอกหมูป่า, ข้าวกระบอกไม้ไผ่, ไข่ออนเซ็น, โมจิข้าวฟ่าง, ชาท้องถิ่น"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "รถรางวิ่ง ~1.5 กม. จาก Wulai ไปน้ำตก เผื่อเวลาต่อคิวซื้อตั๋วสัก 10–20 นาที",
+ "ไม่ต้องล็อกคาเฟ่ตายตัว เลือกร้านที่เปิดและเห็นวิวน้ำตกในวันนั้นได้เลย"
+ ]}
+ ]
+ }
+ },
+ { time:"12:00–12:20", label:"ซื้อตั๋วและรอกระเช้า", transport:" ซื้อตั๋ว", locId:"wulai_waterfall" },
+ { time:"12:20–12:30", label:"นั่งกระเช้าขึ้น Yun Hsien Resort", transport:" กระเช้า", locId:"yun_hsien" },
+ { time:"12:30–14:00", label:"เดินเล่น Yun Hsien Resort แบบสบาย ๆ ชมทะเลสาบ Yun Hsien Lake ในพื้นที่รีสอร์ต พายเรือเล่นได้ (มีค่าเช่าเพิ่ม)", transport:" เดินเล่น + พายเรือ (ถ้าสนใจ)", locId:"yun_hsien", main:true },
+ { time:"14:00–14:15", label:"นั่งกระเช้าลง", transport:" กระเช้า", locId:"wulai_waterfall" },
+ { time:"14:15–14:40", label:"นั่งรถรางกลับ (หรือรอคิวเผื่อไว้)", transport:" Wulai Scenic Train", locId:"wulai_old_street" },
+ { time:"14:40–15:10", label:"เดินกลับ Old Street ซื้อขนมหรือเข้าห้องน้ำ", transport:" เดินชม", locId:"wulai_old_street" },
+ { time:"15:10–16:10", label:"Bus 849 กลับ MRT Xindian", transport:" Bus 849 (ทุก 15–20 นาที)", locId:"xindian_station" },
+ { time:"16:10–16:45", label:"MRT Xindian → Ximen สายสีเขียว", transport:" MRT สายสีเขียว (Green Line)", locId:"hotel" },
+ { time:"16:45–18:30", label:"กลับถึงโรงแรม พักผ่อนสักครู่ ก่อนออกไป Ximending ต่อ", transport:" พักผ่อน", locId:"hotel" },
+ { time:"18:30–21:40", label:"เดินเล่นย่านซีเหมินติง (Ximending) กิน-ช้อปตามทางแบบสบาย ๆ วนกลับที่พักได้เลย", transport:" เดินเล่น", locId:"wan_nian_building", main:true,
+ info:{
+ title:"Ximending ตอนเย็น — มีอะไรน่าสนใจบ้าง",
+ sections:[
+ { h:"จุดแวะแนะนำ (เรียงตามเส้นทาง)", items:[
+ "Wan Nian Commercial Building <a href='https://www.google.com/maps/search/?api=1&query=Wan%20Nian%20Commercial%20Building%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ตึกรวมร้านรองเท้า สนีกเกอร์ เสื้อผ้า ของสะสม",
+ "Curly MaMa's <a href='https://www.google.com/maps/search/?api=1&query=Curly%20MaMa%27s%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — โดนัททอดสไตล์ไต้หวัน ของว่างเดินกิน",
+ "Flame Dice Beef <a href='https://www.google.com/maps/search/?api=1&query=Flame%20Dice%20Beef%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — เนื้อย่างคิวบ์ไฟลุก ของกินเล่นชื่อดังของ Ximending",
+ "Tian Tian Li (天天利美食坊) <a href='https://www.google.com/maps/search/?api=1&query=Tian%20Tian%20Li%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — มื้อเย็น เมนูเด็ดคือข้าวหมูพะโล้ใส่ไข่ดาว, หอยทอด, ขนมผักกาด",
+ "Ay-Chung Flour-Rice Noodle (阿宗麵線) <a href='https://www.google.com/maps/search/?api=1&query=Ay-Chung%20Flour-Rice%20Noodle%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ของว่างหลังมื้อหลัก แนะนำถ้วยเล็กแบ่งกัน 3 คน",
+ "Xing Fu Tang <a href='https://www.google.com/maps/search/?api=1&query=Xing%20Fu%20Tang%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ชานมไข่มุกน้ำตาลทรายแดงชื่อดัง ต้นตำรับที่คนต่อคิวเยอะ",
+ "Cremia <a href='https://www.google.com/maps/search/?api=1&query=Cremia%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ซอฟต์ครีมนมสดรสเข้มข้น ของหวานปิดท้ายเดินเล่น",
+ "Eighty-Eightea Rinbansyo (八拾捌茶輪番所) <a href='https://www.google.com/maps/search/?api=1&query=Eighty-Eightea%20Rinbansyo%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านชาสไตล์ญี่ปุ่น-ไต้หวัน บรรยากาศสงบ อยู่ใกล้ Ximending แค่ไม่กี่ก้าว เหมาะแวะพักดื่มชาถ้ามีเวลา",
+ "NET Zhonghua 2nd Store <a href='https://www.google.com/maps/search/?api=1&query=NET%20Zhonghua%202nd%20Store%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — แบรนด์เสื้อผ้าไต้หวัน ราคาเข้าถึงง่าย",
+ "H&M Taipei Ximen Flagship Store <a href='https://www.google.com/maps/search/?api=1&query=H%26M%20Taipei%20Ximen%20Flagship%20Store%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านหลายชั้น เสื้อผ้า/รองเท้า/เครื่องประดับ"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "เส้นทางนี้เดินเป็นวงจบใกล้ที่พัก เหนื่อยเมื่อไรตัดร้านสุดท้ายแล้วกลับห้องได้เลย",
+ "ร้านอาหารช่วงหัวค่ำอาจต้องรอคิว 10–40 นาที"
+ ]}
+ ]
+ }
+ },
+ ],
+ locations: [
+ { id:"hotel", name:"LIN INN – Wan Nian (near Ximending)", searchName:"LIN INN Wan Nian Taipei", lat:25.04351, lng:121.50589 },
+ { id:"xindian_station", name:"Xindian MRT Station", lat:24.95797, lng:121.53771 },
+ { id:"wulai_old_street", name:"Wulai Old Street", lat:24.86375, lng:121.55142 },
+ { id:"wulai_waterfall", name:"Wulai Waterfall", lat:24.84750, lng:121.55232 },
+ { id:"yun_hsien", name:"Yun Hsien Resort", lat:24.84469, lng:121.55589 },
+ { id:"wan_nian_building", name:"Wan Nian Commercial Building", lat:25.0434, lng:121.5057 },
+ ],
+ notes:[
+ "ค่าเข้า Heping Island Park ตามข้อมูลล่าสุด NT$120/คน เตรียมเงินสดไว้บ้าง",
+ "พกร่มหรือเสื้อกันฝนไปด้วย เพราะ Wulai เป็นพื้นที่ภูเขา ฝนตกง่ายกว่าในเมือง",
+ "แนะนำรองเท้าที่เดินสบายและพื้นยึดเกาะดี เพราะมีเดินเส้นทางริมน้ำตกที่อาจลื่น",
+ "เผื่อเงินสดค่า Taxi หลายช่วง (Xindian → Wulai กลับ และช่วงอื่น ๆ ที่ไม่ได้ใช้ Bus 849)",
+ "Bus 849 มีทั้งเที่ยวขาไปและขากลับ ทุก 15–20 นาที ไม่ต้องรีบมาก แต่ควรเผื่อเวลาต่อคิวช่วงคนเยอะ"
+ ],
+ photoSpots: []
+ },
+ {
+ dayNumber: 5,
+ expensesUrl: "https://docs.google.com/spreadsheets/d/1xXDdO5n5-8Hkeg27HuKcyH8iW4WCJQQc/edit?gid=2024367396#gid=2024367396&range=A1:D1",
+ date: "2026-10-18",
+ dateLabel: "18 Oct 2026 (Sun)",
+ icon: "card_giftcard",
+ title: "ซื้อของฝากย่าน Ximending → เดินทางกลับ",
+ timeline: [
+ { time:"07:00", label:"ตื่นนอน เก็บกระเป๋ารอบสุดท้าย", transport:"—", locId:"hotel" },
+ { time:"08:00", label:"เช็คเอาท์ ฝากกระเป๋าไว้ที่เคาน์เตอร์โรงแรม (แล้วออกไปเที่ยว/กินก่อน ค่อยกลับมารับ)", transport:" เช็คเอาท์", locId:"hotel" },
+ { time:"08:00–10:00", label:"ของฝากสายวัยรุ่นห้ามพลาด — Don Don Donki, Ruiyi Sunny Cake, Sanrio 7-Eleven", transport:" เดินช้อป", locId:"don_donki", main:true,
+ info:{
+ title:"ของฝากสายวัยรุ่นห้ามพลาด",
+ sections:[
+ { h:"จุดแนะนำ", items:[
+ "Don Don Donki Ximen <a href='https://www.google.com/maps/search/?api=1&query=Don%20Don%20Donki%20Ximen%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านดิสเคาต์สไตล์ญี่ปุ่น เปิด 24 ชม. ขนม/ของกินเล่นเพียบ ยอดฮิตของนักท่องเที่ยววัยรุ่น มีของกินสไตล์ญี่ปุ่นให้ชิมหน้าร้านด้วย",
+ "Ruiyi Sunny Cake <a href='https://www.google.com/maps/search/?api=1&query=Ruiyi%20Sunny%20Cake%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — เบเกอรี่ให้ชิมฟรีทุกอย่าง มีทั้งพายสับปะรด ขนมเผือก ซันเค้ก และนูกัตหลายรส เหมาะซื้อหลายรสไปแจก",
+ "Sanrio-themed 7-Eleven (Hello Kitty) <a href='https://www.google.com/maps/search/?api=1&query=Sanrio%207-Eleven%20Ximending%20Taipei%2C%20Taiwan&hl=en' target='_blank' rel='noopener'><span class=\"mi mi-sm\" style=\"font-size:14px\">location_on</span></a> — ร้านสะดวกซื้อธีม Hello Kitty มีปริ้นต์เสื้อยืดธีมตัวการ์ตูนได้ด้วย ของฝากแปลกดี"
+ ]},
+ { h:"เรื่องที่ควรรู้", items:[
+ "ร้านส่วนใหญ่อยู่ในระยะเดินจากที่พัก ไม่ต้องนั่งรถ",
+ "เผื่อพื้นที่กระเป๋าเดินทางไว้สำหรับของกินที่ซื้อกลับ"
+ ]}
+ ]
+ }
+ },
+ { time:"10:00–10:45", label:"เดินไป Bopiliao Historic Block ถ่ายรูปตึกแดงเก่า", transport:" เดินเท้า (~10–15 นาที)", locId:"bopiliao", main:true,
+ info:{
+ title:"Bopiliao Historic Block",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "ถนนอิฐแดงยุคราชวงศ์ชิงที่อนุรักษ์ไว้ อยู่ห่างจาก Ximending แค่เดิน 10 นาที",
+ "เข้าชมฟรี เหมาะถ่ายรูปย้อนยุค บรรยากาศเงียบสงบต่างจากย่านช้อปปิ้ง"
+ ]}
+ ]
+ }
+ },
+ { time:"10:45–12:00", label:"มื้อเที่ยงเบา ๆ + เดินซื้อของฝากเพิ่มเติมรอบ Ximending", transport:" เดินกิน/ช้อป", locId:"hotel", main:true },
+ { time:"12:00–13:00", label:"ซื้อของฝากรอบสุดท้ายที่ Carrefour Guilin (ขนม/ชา/ของฝากแบบเป็นชุด ครบในที่เดียว)", transport:" เดินช้อป", locId:"carrefour", main:true,
+ info:{
+ title:"Carrefour Guilin — ซื้อของฝากรอบสุดท้าย",
+ sections:[
+ { h:"เรื่องที่ควรรู้", items:[
+ "เดินจาก Ximending ทางออก 1 แค่ 5–7 นาที เปิด 24 ชั่วโมง",
+ "มีขนม ชา พายสับปะรด และของฝากแบบแพ็กสำเร็จให้เลือกครบ ราคาคุ้ม เหมาะซื้อรอบสุดท้ายก่อนกลับ",
+ "จ่ายเงินสด/บัตรได้ อย่าลืมเผื่อกระเป๋าใบใหญ่ไว้ใส่ของ"
+ ]}
+ ]
+ }
+ },
+ { time:"13:00–13:30", label:"กลับที่พัก รับกระเป๋าที่ฝากไว้", transport:" รับกระเป๋า", locId:"hotel" },
+ { time:"14:50–15:50", label:"แพ็คกระเป๋ารอบสุดท้าย และพักผ่อนเบา ๆ ที่ห้องก่อนเดินทางไปสนามบิน", transport:" แพ็คกระเป๋า", locId:"hotel" },
+ { time:"15:50–16:50", label:"เรียก Taxi เดินทางไปสนามบินเถาหยวน (~1 ชม.)", transport:" แท็กซี่", locId:"airport" },
+ { time:"16:50", label:"ถึงสนามบิน — น้องอามเช็กอิน TG 635 Thai Airways", transport:" เช็กอิน (น้องอาม)", locId:"airport",
+ info:{
+ title:"เที่ยวบินที่ 1 — TG635 Thai Airways (น้องอาม)",
+ sections:[
+ { h:"รายละเอียดเที่ยวบิน", items:[
+ "TPE 18:50 น. → BKK 21:35 น. (สุวรรณภูมิ)"
+ ]},
+ { h:"ลิงก์", items:[
+ "<a href='https://www.flightaware.com/live/flight/THA635' target='_blank' rel='noopener'>ดูเรียลไทม์ TG635 ↗</a>"
+ ]}
+ ]
+ }
+ },
+ { time:"17:45", label:"พี่แอมเช็กอิน Thai Vietjet Air VZ568", transport:" เช็กอิน (พี่แอม)", locId:"airport",
+ info:{
+ title:"เที่ยวบินที่ 2 — VZ568 Thai Vietjet Air (พี่แอม)",
+ sections:[
+ { h:"รายละเอียดเที่ยวบิน", items:[
+ "TPE 19:45 น. → BKK 22:30 น.",
+ "18 ตุลาคม 2026"
+ ]},
+ { h:"ลิงก์", items:[
+ "<a href='https://www.flightaware.com/live/flight/TVJ568' target='_blank' rel='noopener'>ดูเรียลไทม์ VZ568 ↗</a>"
+ ]}
+ ]
+ }
+ },
+ { time:"18:50", label:"น้องอาม on flight — TG635 กำลังเดินทาง", transport:" เครื่องบิน", locId:"airport" },
+ { time:"19:45", label:"พี่แอม on flight — VZ568 กำลังเดินทาง", transport:" เครื่องบิน", locId:"airport" },
+ { time:"21:35", label:"น้องอาม ถึงสุวรรณภูมิ (TG635)", transport:" ลงเครื่อง", locId:null },
+ { time:"22:30", label:"พี่แอม ถึงสุวรรณภูมิ (VZ568)", transport:" ลงเครื่อง", locId:null },
+ { time:"23:00–24:00", label:"เดินทางกลับบ้าน", transport:" รถส่วนตัว/แท็กซี่", locId:null },
+ ],
+ locations: [
+ { id:"hotel", name:"LIN INN – Wan Nian (near Ximending)", lat:25.04351, lng:121.50589 },
+ { id:"don_donki", name:"Don Don Donki Ximen", searchName:"Don Don Donki Ximen Taipei", lat:25.0432, lng:121.5068 },
+ { id:"carrefour", name:"Carrefour Guilin", searchName:"Carrefour Guilin Road Taipei", lat:25.0402, lng:121.5045 },
+ { id:"bopiliao", name:"Bopiliao Historic Block", lat:25.03693, lng:121.50214 },
+ { id:"airport", name:"Taoyuan International Airport", lat:25.0797, lng:121.2342 },
+ ],
+ notes:[
+ "เช็คเอาท์ 08:00 น. ฝากกระเป๋าไว้ที่โรงแรมก่อน แล้วค่อยออกไปเที่ยว/กินของฝาก กลับมารับตอนบ่าย",
+ "แวะซื้อของฝากรอบสุดท้ายที่ Carrefour Guilin ก่อนกลับที่พัก อย่าลืมเผื่อพื้นที่กระเป๋าไว้ใส่ของ",
+ "แพ็คกระเป๋ารอบสุดท้าย + พักผ่อนเบา ๆ ที่ห้อง 14:50–15:50 น. ก่อนออกเดินทาง 15:50 น. ถึงสนามบินพอดี 16:50 น.",
+ "น้องอามเช็กอิน TG635 (18:50 น.) ก่อน ส่วนพี่แอมเช็กอิน VZ568 (19:45 น.) แต่เดินทางไปสนามบินพร้อมกัน แยกกันแค่ตอนเช็กอิน/ผ่านเกท",
+ "เช็ก Real-time เที่ยวบินทั้งสองก่อนออกจากที่พัก เผื่อเวลาเลื่อน"
+ ],
+ photoSpots: []
+ }
+];
+
+let activeIndex = 0;
+let leafletMap = null;
+let markerLayer = null;
+
+function initLeaflet(){
+ leafletMap = L.map('leafletMap', { scrollWheelZoom:false }).setView([25.05, 121.45], 11);
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+ maxZoom: 19,
+ attribution: '&copy; OpenStreetMap contributors'
+ }).addTo(leafletMap);
+ markerLayer = L.layerGroup().addTo(leafletMap);
+}
+
+function pinIcon(num){
+ return L.divIcon({
+ className: '',
+ html: '<div class="lf-pin"><span>' + num + '</span></div>',
+ iconSize: [30, 30],
+ iconAnchor: [15, 30]
+ });
+}
+
+
+function stripEmoji(str) {
+ return str.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2702}-\u{27B0}\u{200D}\u{20E3}\u{E0020}-\u{E007F}]/gu, '').trim();
+}
+
+function transportToIcon(t) {
+ if (!t || t === '\u2014') return '<span class="mi mi-sm" style="color:var(--ink-secondary)">remove</span>';
+ var lower = t.toLowerCase();
+ if (lower.includes('taxi') || lower.includes('\u0e41\u0e17\u0e47\u0e01\u0e0b\u0e35\u0e48')) return '<span class="mi mi-sm" style="color:var(--secondary)">local_taxi</span>';
+ if (lower.includes('mrt') || lower.includes('subway') || lower.includes('\u0e2a\u0e32\u0e22\u0e2a\u0e35')) return '<span class="mi mi-sm" style="color:var(--secondary)">subway</span>';
+ if (lower.includes('tra') || lower.includes('\u0e23\u0e16\u0e44\u0e1f')) return '<span class="mi mi-sm" style="color:var(--secondary)">train</span>';
+ if (lower.includes('bus') || lower.includes('\u0e23\u0e16')) return '<span class="mi mi-sm" style="color:var(--secondary)">directions_bus</span>';
+ if (lower.includes('\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e1a\u0e34\u0e19') || lower.includes('\u2708')) return '<span class="mi mi-sm" style="color:var(--secondary)">flight</span>';
+ if (lower.includes('\u0e40\u0e14\u0e34\u0e19') || lower.includes('walk')) return '<span class="mi mi-sm" style="color:var(--secondary)">directions_walk</span>';
+ if (lower.includes('\u0e01\u0e23\u0e30\u0e40\u0e0a\u0e49\u0e32')) return '<span class="mi mi-sm" style="color:var(--secondary)">gondola_lift</span>';
+ if (lower.includes('\u0e23\u0e16\u0e23\u0e32\u0e07') || lower.includes('scenic train')) return '<span class="mi mi-sm" style="color:var(--secondary)">tram</span>';
+ if (lower.includes('\u0e40\u0e23\u0e37\u0e2d') || lower.includes('\u0e1e\u0e32\u0e22\u0e40\u0e23\u0e37\u0e2d')) return '<span class="mi mi-sm" style="color:var(--secondary)">rowing</span>';
+ if (lower.includes('\u0e16\u0e48\u0e32\u0e22\u0e23\u0e39\u0e1b')) return '<span class="mi mi-sm" style="color:var(--secondary)">photo_camera</span>';
+ if (lower.includes('\u0e1e\u0e31\u0e01\u0e1c\u0e48\u0e2d\u0e19') || lower.includes('\u0e1e\u0e31\u0e01')) return '<span class="mi mi-sm" style="color:var(--secondary)">hotel</span>';
+ if (lower.includes('\u0e25\u0e07\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07')) return '<span class="mi mi-sm" style="color:var(--secondary)">flight_land</span>';
+ if (lower.includes('\u0e2b\u0e49\u0e2d\u0e07\u0e19\u0e49\u0e33') || lower.includes('\u0e1e\u0e31\u0e01\u0e17\u0e35\u0e48\u0e2a\u0e16\u0e32\u0e19\u0e35')) return '<span class="mi mi-sm" style="color:var(--secondary)">wc</span>';
+ if (lower.includes('\u0e15\u0e31\u0e4b\u0e27') || lower.includes('\u0e0b\u0e37\u0e49\u0e2d\u0e15\u0e31\u0e4b\u0e27')) return '<span class="mi mi-sm" style="color:var(--secondary)">confirmation_number</span>';
+ if (lower.includes('\u0e40\u0e0a\u0e47\u0e01\u0e2d\u0e34\u0e19') || lower.includes('\u0e01\u0e23\u0e30\u0e40\u0e1b\u0e4b\u0e32') || lower.includes('\u0e41\u0e1e\u0e47\u0e04') || lower.includes('\u0e40\u0e0a\u0e47\u0e01\u0e2d\u0e2d\u0e01')) return '<span class="mi mi-sm" style="color:var(--secondary)">luggage</span>';
+ if (lower.includes('\u0e23\u0e16\u0e22\u0e19\u0e15\u0e4c') || lower.includes('\u0e23\u0e16\u0e2a\u0e48\u0e27\u0e19\u0e15\u0e31\u0e27')) return '<span class="mi mi-sm" style="color:var(--secondary)">directions_car</span>';
+ return '<span class="mi mi-sm" style="color:var(--ink-secondary)">more_horiz</span>';
+}
+
+function splitDateLabel(dateLabel){
+ const m = (dateLabel || '').match(/^(.*?)\s*(\(.*\))$/);
+ return m ? { main: m[1], weekday: m[2] } : { main: dateLabel || '', weekday: '' };
+}
+
+function renderDayRail(){
+ const rail = document.getElementById('dayRail');
+ rail.innerHTML = '';
+ rail.style.gridTemplateColumns = `repeat(${tripData.length}, 1fr)`;
+ tripData.forEach((d, i) => {
+ const pill = document.createElement('div');
+ pill.className = 'day-pill' + (i === activeIndex ? ' active' : '');
+ const { main: dateMain, weekday: dateWeekday } = splitDateLabel(d.dateLabel);
+ pill.innerHTML = `
+ <div class="pill-top">
+ <div class="num">Day ${d.dayNumber}</div>
+ </div>
+ <div class="pill-date-row">
+ <span class="pill-date-main">${dateMain}</span>
+ <span class="pill-date-weekday">${dateWeekday}</span>
+ </div>
+ <div class="route">${d.title}</div>
+ `;
+ pill.addEventListener('click', () => switchDay(i));
+ rail.appendChild(pill);
+ });
+}
+
+function formatDurationOnly(timeStr){
+ const parts = timeStr.split('–');
+ if (parts.length !== 2) return '';
+ const toMinutes = t => {
+ const hm = t.trim().split(':').map(Number);
+ return hm[0] * 60 + hm[1];
+ };
+ let start = toMinutes(parts[0]);
+ let end = toMinutes(parts[1]);
+ if (end < start) end += 24 * 60;
+ const diff = end - start;
+ let durText;
+ if (diff >= 60){
+ const h = Math.floor(diff / 60);
+ const m = diff % 60;
+ durText = h + '.' + String(m).padStart(2,'0') + ' hrs';
+ } else {
+ durText = diff + ' min';
+ }
+ return '<span class="tl-dur">(' + durText + ')</span>';
+}
+
+function renderTimeline(day){
+ const el = document.getElementById('timeline');
+ el.innerHTML = '';
+ day.timeline.forEach((row, idx) => {
+ const loc = day.locations.find(l => l.id === row.locId);
+ const item = document.createElement('div');
+ item.className = 'tl-item' + (row.main ? ' tl-stop' : '');
+ item.style.animationDelay = Math.min(idx * 30, 300) + 'ms';
+ const locCell = loc
+ ? `<a class="tl-loc-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((loc.searchName || loc.name) + ', Taiwan')}&hl=en" target="_blank" rel="noopener" title="${loc.name}"><span class="mi mi-sm">location_on</span> <span class="loc-text">${loc.name}</span></a>`
+ : '';
+ const transportCell = row.schedule
+ ? `<button class="sched-btn" data-idx="${idx}">${transportToIcon(row.transport)} ${stripEmoji(row.transport)} <span class="caret">▾</span></button>`
+ : (row.transport ? `<span class="tl-transport">${transportToIcon(row.transport)} ${stripEmoji(row.transport)}</span>` : '');
+ const infoBtnCell = row.info ? `<button class="info-btn" data-idx="${idx}"><span class="mi mi-sm">menu_book</span> Read more <span class="caret">▾</span></button>` : '';
+ item.innerHTML = `
+ <div class="tl-time-col">
+ <div class="tl-time">${row.time}</div>
+ ${formatDurationOnly(row.time)}
+ </div>
+ <div class="tl-main">
+ <div class="tl-activity">${row.label}</div>
+ <div class="tl-meta">${transportCell}${locCell}${infoBtnCell}</div>
+ </div>
+ `;
+ el.appendChild(item);
+
+ if (row.info){
+ const infoDetail = document.createElement('div');
+ infoDetail.className = 'info-detail';
+ infoDetail.style.display = 'none';
+ infoDetail.innerHTML = `
+ <h5>${row.info.title}</h5>
+ ${row.info.sections.map(s => `
+ <div><strong>${s.h}</strong></div>
+ <ul>${s.items.map(it => `<li>${it}</li>`).join('')}</ul>
+ `).join('')}
+ `;
+ item.querySelector('.tl-main').appendChild(infoDetail);
+ const infoBtn = item.querySelector('.info-btn');
+ infoBtn.addEventListener('click', () => {
+ const open = infoDetail.style.display !== 'none';
+ infoDetail.style.display = open ? 'none' : 'block';
+ infoBtn.classList.toggle('open', !open);
+ });
+ }
+
+ if (row.schedule){
+ const detail = document.createElement('div');
+ detail.className = 'sched-detail';
+ detail.style.display = 'none';
+ detail.innerHTML = `
+ <div style="font-weight:700;margin-bottom:4px;">${row.schedule.service}</div>
+ <div class="sd-row">
+ <span><span class="mi mi-sm">train</span> ควรขึ้นขบวน <span class="sd-take">${row.schedule.take} น.</span></span>
+ <span>· ขบวนถัดไป <span class="sd-next">${row.schedule.next} น.</span></span>
+ <span>· ${row.schedule.frequency}</span>
+ </div>
+ <div style="margin-top:6px;"><a href="${row.schedule.fullUrl}" target="_blank" rel="noopener">ดูตารางเวลาเต็ม ↗</a></div>
+ `;
+ item.querySelector('.tl-main').appendChild(detail);
+
+ const btn = item.querySelector('.sched-btn');
+ btn.addEventListener('click', () => {
+ const open = detail.style.display !== 'none';
+ detail.style.display = open ? 'none' : 'block';
+ btn.classList.toggle('open', !open);
+ });
+ }
+ });
+}
+
+function renderMap(day){
+ const locs = day.locations;
+ markerLayer.clearLayers();
+ const bounds = [];
+ locs.forEach((l, i) => {
+ const marker = L.marker([l.lat, l.lng], { icon: pinIcon(i+1) })
+ .bindPopup('<b>' + (i+1) + '. ' + l.name + '</b>');
+ marker.addTo(markerLayer);
+ bounds.push([l.lat, l.lng]);
+ });
+ if (leafletMap) leafletMap.invalidateSize();
+ if (bounds.length) leafletMap.fitBounds(bounds, { padding:[32,32], maxZoom:15 });
+
+ const visual = document.getElementById('routeVisual');
+ const actions = document.getElementById('mapActions');
+ visual.innerHTML = '';
+ actions.innerHTML = '';
+
+ locs.forEach((l, i) => {
+ const stop = document.createElement('div');
+ stop.className = 'rv-stop';
+ stop.innerHTML = `
+ <div class="rv-num">${i + 1}</div>
+ <div class="rv-line"></div>
+ <div class="rv-stop-body">
+ <a class="rv-stop-name" style="text-decoration:none;color:inherit;" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((l.searchName || l.name) + ', Taiwan')}&hl=en" target="_blank" rel="noopener">${l.name}</a>
+ </div>
+ `;
+ visual.appendChild(stop);
+ });
+
+ const origin = `${locs[0].lat},${locs[0].lng}`;
+ const dest = `${locs[locs.length-1].lat},${locs[locs.length-1].lng}`;
+ const waypoints = locs.slice(1, -1).map(l => `${l.lat},${l.lng}`).join('|');
+ let fullUrl = day.fullRouteUrl;
+ if (!fullUrl){
+ fullUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=walking&hl=en`;
+ if (waypoints) fullUrl += `&waypoints=${encodeURIComponent(waypoints)}`;
+ }
+ const fullBtn = document.createElement('a');
+ fullBtn.href = fullUrl; fullBtn.target = '_blank'; fullBtn.rel = 'noopener';
+ fullBtn.className = 'chip-link full';
+ fullBtn.innerHTML = '<span class="mi mi-sm">map</span> Open full route in Google Maps';
+ actions.appendChild(fullBtn);
+}
+
+function renderPhotoSpots(day){
+ const strip = document.getElementById('photoStrip');
+ if (!strip) return;
+ strip.innerHTML = '';
+ day.photoSpots.forEach(p => {
+ const card = document.createElement('div');
+ card.className = 'photo-card';
+ card.innerHTML = `
+ <div class="img-wrap">${p.illustration}</div>
+ <div class="pc-body">
+ <div class="pc-tag">${p.tag}</div>
+ <h4>${p.loc}</h4>
+ <p>${p.tip}</p>
+ <div class="pc-credit"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.mapQuery)}&hl=en" target="_blank" rel="noopener"><span class="mi mi-sm" style="font-size:14px">location_on</span> ดูสถานที่จริงบน Google Maps</a></div>
+ </div>
+ `;
+ strip.appendChild(card);
+ });
+}
+
+function renderNotes(day){
+ const card = document.getElementById('notesCard');
+ if (!day.notes || !day.notes.length){
+ card.style.display = 'none';
+ return;
+ }
+ card.style.display = 'block';
+ card.innerHTML = `
+ <div class="card-head"><span class="mi mi-sm">sticky_note_2</span> Notes for Today</div>
+ <ul style="padding:0 22px 18px;">${day.notes.map(n => `<li>${n}</li>`).join('')}</ul>
+ `;
+}
+
+/* ================= Weather (free, keyless Open-Meteo API) ================= */
+const TAIPEI_LAT = 25.0330;
+const TAIPEI_LON = 121.5654;
+
+const WEATHER_CODE_MAP = {
+ 0: { icon: 'sunny', label: 'Clear sky' },
+ 1: { icon: 'partly_cloudy_day', label: 'Mainly clear' },
+ 2: { icon: 'partly_cloudy_day', label: 'Partly cloudy' },
+ 3: { icon: 'cloud', label: 'Overcast' },
+ 45: { icon: 'foggy', label: 'Fog' },
+ 48: { icon: 'foggy', label: 'Fog' },
+ 51: { icon: 'rainy', label: 'Light drizzle' },
+ 53: { icon: 'rainy', label: 'Drizzle' },
+ 55: { icon: 'rainy', label: 'Heavy drizzle' },
+ 61: { icon: 'rainy', label: 'Light rain' },
+ 63: { icon: 'rainy', label: 'Rain' },
+ 65: { icon: 'rainy', label: 'Heavy rain' },
+ 71: { icon: 'ac_unit', label: 'Light snow' },
+ 73: { icon: 'ac_unit', label: 'Snow' },
+ 75: { icon: 'ac_unit', label: 'Heavy snow' },
+ 80: { icon: 'rainy', label: 'Rain showers' },
+ 81: { icon: 'rainy', label: 'Rain showers' },
+ 82: { icon: 'rainy', label: 'Violent showers' },
+ 95: { icon: 'thunderstorm', label: 'Thunderstorm' },
+ 96: { icon: 'thunderstorm', label: 'Thunderstorm' },
+ 99: { icon: 'thunderstorm', label: 'Thunderstorm' },
+};
+function weatherCodeInfo(code){
+ return WEATHER_CODE_MAP[code] || { icon: 'thermostat', label: 'Weather' };
+}
+
+const tripWeather = {}; // date string -> { max, min, code, isForecast }
+
+async function loadTripWeather(){
+ const msPerDay = 24 * 60 * 60 * 1000;
+ const today = new Date(); today.setHours(0, 0, 0, 0);
+ const dates = tripData.map(d => d.date);
+ const startDate = dates[0];
+ const endDate = dates[dates.length - 1];
+ const daysUntilEnd = Math.round((new Date(endDate + 'T00:00:00') - today) / msPerDay);
+
+ try {
+ if (daysUntilEnd >= -1 && daysUntilEnd <= 16){
+ // Within Open-Meteo's live forecast window — use the real forecast.
+ const url = `https://api.open-meteo.com/v1/forecast?latitude=${TAIPEI_LAT}&longitude=${TAIPEI_LON}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTaipei&start_date=${startDate}&end_date=${endDate}`;
+ const res = await fetch(url);
+ const data = await res.json();
+ if (data && data.daily && data.daily.time){
+ data.daily.time.forEach((date, i) => {
+ tripWeather[date] = {
+ max: data.daily.temperature_2m_max[i],
+ min: data.daily.temperature_2m_min[i],
+ code: data.daily.weathercode[i],
+ isForecast: true,
+ };
+ });
+ }
+ } else {
+ // Trip is too far out for a live forecast — average the same calendar dates
+ // from the past 3 complete years as a "typical weather" estimate instead.
+ const thisYear = today.getFullYear();
+ const perDateSamples = {};
+ for (const year of [thisYear - 1, thisYear - 2, thisYear - 3]){
+ const yStart = String(year) + startDate.slice(4);
+ const yEnd = String(year) + endDate.slice(4);
+ try {
+ const url = `https://archive-api.open-meteo.com/v1/archive?latitude=${TAIPEI_LAT}&longitude=${TAIPEI_LON}&start_date=${yStart}&end_date=${yEnd}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTaipei`;
+ const res = await fetch(url);
+ const data = await res.json();
+ if (data && data.daily && data.daily.time){
+ data.daily.time.forEach((date, i) => {
+ const mmdd = date.slice(5);
+ if (!perDateSamples[mmdd]) perDateSamples[mmdd] = [];
+ perDateSamples[mmdd].push({
+ max: data.daily.temperature_2m_max[i],
+ min: data.daily.temperature_2m_min[i],
+ code: data.daily.weathercode[i],
+ });
+ });
+ }
+ } catch (e) { console.error('historical weather fetch failed for', year, e); }
+ }
+ const avg = arr => arr.reduce((s, v) => s + v, 0) / arr.length;
+ dates.forEach(date => {
+ const samples = perDateSamples[date.slice(5)];
+ if (!samples || !samples.length) return;
+ const codeCounts = {};
+ samples.forEach(s => { codeCounts[s.code] = (codeCounts[s.code] || 0) + 1; });
+ const modeCode = Number(Object.keys(codeCounts).sort((a, b) => codeCounts[b] - codeCounts[a])[0]);
+ tripWeather[date] = {
+ max: Math.round(avg(samples.map(s => s.max))),
+ min: Math.round(avg(samples.map(s => s.min))),
+ code: modeCode,
+ isForecast: false,
+ };
+ });
+ }
+ } catch (e) {
+ console.error('weather fetch failed', e);
+ }
+ renderWeatherChip(tripData[activeIndex]);
+}
+
+function renderWeatherChip(day){
+ const el = document.getElementById('weatherChip');
+ if (!el) return;
+ const w = tripWeather[day.date];
+ if (!w){ el.innerHTML = ''; return; }
+ const info = weatherCodeInfo(w.code);
+ el.innerHTML = `
+ <span class="mi mi-sm">${info.icon}</span>
+ ${Math.round(w.max)}&deg;/${Math.round(w.min)}&deg;C &middot; ${info.label}
+ ${w.isForecast ? '' : '<span class="weather-chip-note">(typical, 3-yr avg)</span>'}
+ `;
+}
+
+function renderDayContent(day){
+ document.getElementById('dayTitle').textContent = `Day ${day.dayNumber} · ${stripEmoji(day.title)}`;
+ // Each step runs independently so one failing (e.g. the map, if Leaflet didn't load)
+ // never blocks the rest — like the weather chip — from updating.
+ try { renderTimeline(day); } catch (e) { console.error('renderTimeline failed', e); }
+ try { renderMap(day); } catch (e) { console.error('renderMap failed', e); }
+ try { renderNotes(day); } catch (e) { console.error('renderNotes failed', e); }
+ renderWeatherChip(day);
+ document.getElementById('pageFooter').textContent = `DAY ${day.dayNumber} OF ${tripData.length}`;
+}
+
+function renderAll(){
+ renderDayRail();
+ renderDayContent(tripData[activeIndex]);
+}
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function switchDay(i){
+ if (i === activeIndex) return;
+ activeIndex = i;
+ renderDayRail();
+ const day = tripData[activeIndex];
+ const content = document.getElementById('dayContent');
+ if (prefersReducedMotion || !content){
+ renderDayContent(day);
+ return;
+ }
+ content.classList.add('day-fade');
+ window.setTimeout(() => {
+ renderDayContent(day);
+ requestAnimationFrame(() => content.classList.remove('day-fade'));
+ }, 180);
+}
+
+function findTodayDayNumber(){
+ const now = new Date();
+ const todayStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+ const match = tripData.find(d => d.date === todayStr);
+ return match ? match.dayNumber : null;
+}
+
+function renderHeroCountdown(){
+ const el = document.getElementById('heroCountdown');
+ if (!el) return;
+ const msPerDay = 24 * 60 * 60 * 1000;
+ const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+ const tripStart = startOfDay(new Date(tripData[0].date + 'T00:00:00'));
+ const tripEnd = startOfDay(new Date(tripData[tripData.length - 1].date + 'T00:00:00'));
+ const today = startOfDay(new Date());
+
+ if (today < tripStart){
+ const days = Math.round((tripStart - today) / msPerDay);
+ el.innerHTML = `<span class="mi mi-sm">schedule</span> ${days} day${days === 1 ? '' : 's'} until departure`;
+ } else if (today <= tripEnd){
+ const dayNum = Math.round((today - tripStart) / msPerDay) + 1;
+ el.innerHTML = `<span class="mi mi-sm">celebration</span> Day ${dayNum} of ${tripData.length} — enjoy the trip!`;
+ } else {
+ el.innerHTML = `<span class="mi mi-sm">task_alt</span> Trip completed`;
+ }
+}
+
+/* ================= Expense tracker (shared storage, all inside the Report modal) ================= */
+
+const PEOPLE = ['AM', 'For', 'Arm'];
+
+let cachedTwdToThbRate = null;
+let rateFetchedAt = 0;
+let rateFetchPromise = null;
+const RATE_REFRESH_MS = 10 * 60 * 1000; // keep the rate reasonably "live" for long sessions
+const FALLBACK_TWD_TO_THB_RATE = 1.05; // used only when the live rate can't be fetched
+
+function getTwdToThbRate(){
+ const isStale = cachedTwdToThbRate === null || (Date.now() - rateFetchedAt) > RATE_REFRESH_MS;
+ if (!isStale) return Promise.resolve(cachedTwdToThbRate);
+ if (rateFetchPromise) return rateFetchPromise; // a fetch is already in flight — share it
+ rateFetchPromise = fetch('https://api.frankfurter.app/latest?from=TWD&to=THB')
+ .then(res => res.json())
+ .then(data => {
+ if (data && data.rates && typeof data.rates.THB === 'number'){
+ cachedTwdToThbRate = data.rates.THB;
+ rateFetchedAt = Date.now();
+ }
+ return cachedTwdToThbRate;
+ })
+ .catch(e => {
+ console.error('exchange rate fetch failed', e);
+ return cachedTwdToThbRate;
+ })
+ .finally(() => { rateFetchPromise = null; });
+ return rateFetchPromise;
+}
+let reportActiveDay = 1;
+
+function expenseKey(dayNumber){ return `expenses_day_${dayNumber}`; }
+
+// Fallback used only when window.storage isn't available in this rendering context.
+// In that case data still works perfectly within this open tab, but won't be
+// saved once the page is closed/reloaded, and won't sync to other people's devices.
+const memoryStore = {};
+let usingStorageFallback = false;
+
+async function loadDayExpenses(dayNumber){
+ const key = expenseKey(dayNumber);
+ try {
+ if (!window.storage || typeof window.storage.get !== 'function') throw new Error('storage unavailable');
+ const res = await window.storage.get(key, true);
+ if (!usingStorageFallback && memoryStore[key] !== undefined) {
+ // We previously fell back for this key; keep using the fallback copy so we don't
+ // silently lose data that only exists in memory.
+ return JSON.parse(memoryStore[key]);
+ }
+ return res && res.value ? JSON.parse(res.value) : [];
+ } catch (e) {
+ usingStorageFallback = true;
+ return memoryStore[key] ? JSON.parse(memoryStore[key]) : [];
+ }
+}
+
+async function saveDayExpenses(dayNumber, list){
+ const key = expenseKey(dayNumber);
+ memoryStore[key] = JSON.stringify(list); // always keep an in-memory copy as a safety net
+ try {
+ if (!window.storage || typeof window.storage.set !== 'function') throw new Error('storage unavailable');
+ const result = await window.storage.set(key, JSON.stringify(list), true);
+ if (!result) throw new Error('Storage write returned no result');
+ return result;
+ } catch (e) {
+ usingStorageFallback = true;
+ return { key, value: memoryStore[key], shared: false };
+ }
+}
+
+function expenseRowsHtml(list, highlightIdx){
+ if (!list.length) return `<div class="expense-empty">ยังไม่มีรายการ ลองเพิ่มรายจ่ายแรกได้เลยค่ะ</div>`;
+ return list.map((e, i) => `
+ <div class="expense-row${i === highlightIdx ? ' expense-row-new' : ''}">
+ <span class="exp-name">${e.name}</span>
+ <span class="exp-item">${e.item}</span>
+ <span class="exp-amount">${Number(e.amount).toLocaleString()} NT$</span>
+ ${e.rateNote ? `<span class="mi mi-sm exp-rate-flag" title="${e.rateNote}">info</span>` : ''}
+ <span class="exp-payment">${e.payment}</span>
+ <button class="exp-del" data-idx="${i}" title="Delete"><span class="mi mi-sm">delete</span></button>
+ </div>
+ `).join('');
+}
+
+async function renderReportEntrySection(dayNumber){
+ const section = document.getElementById('reportEntrySection');
+ section.innerHTML = `<div class="expense-empty">กำลังโหลด...</div>`;
+ let list = [];
+ let loadError = null;
+ try {
+ list = await loadDayExpenses(dayNumber);
+ } catch (e) {
+ loadError = e;
+ }
+
+ const dayTabsHtml = tripData.map(d => `
+ <button type="button" class="report-day-tab${d.dayNumber === dayNumber ? ' active' : ''}" data-day="${d.dayNumber}">Day ${d.dayNumber}<span class="report-day-tab-date">${(d.dateLabel || '').split(' ').slice(0,2).join(' ')}</span></button>
+ `).join('');
+
+ section.innerHTML = `
+ <div class="report-day-tabs">${dayTabsHtml}</div>
+ ${loadError ? `<div class="expense-error"><span class="mi mi-sm">error</span> Load failed: ${loadError.message || loadError}</div>` : ''}
+ <form id="expenseForm" class="expense-form">
+ <div class="field-group">
+ <label class="field-label" for="expAmount">Pay Amount</label>
+ <div class="amount-row">
+ <input type="number" id="expAmount" placeholder="0" required min="0" step="1" inputmode="decimal">
+ <div class="currency-toggle" id="currencyToggle" role="group" aria-label="Currency">
+ <button type="button" class="currency-opt active" data-cur="NTD">NT$</button>
+ <button type="button" class="currency-opt" data-cur="THB">THB</button>
+ </div>
+ </div>
+ <div class="expense-rate-note" id="expenseRateNote"></div>
+ </div>
+
+ <div class="field-group">
+ <label class="field-label" for="expItem">Expense Detail</label>
+ <input type="text" id="expItem" placeholder="e.g. Taxi to hotel" required>
+ </div>
+
+ <div class="field-group">
+ <label class="field-label" id="payerLabel">Payer Name</label>
+ <div class="segmented" id="payerSegmented" role="tablist" aria-labelledby="payerLabel">
+ ${PEOPLE.map((p, i) => `<button type="button" class="segmented-opt${i === 0 ? ' active' : ''}" data-value="${p}" role="tab" aria-selected="${i === 0}">${p}</button>`).join('')}
+ </div>
+ <input type="hidden" id="expName" value="${PEOPLE[0]}" required>
+ </div>
+
+ <div class="field-group">
+ <label class="field-label" id="paymentLabel">Payment Method</label>
+ <div class="segmented" id="paymentSegmented" role="tablist" aria-labelledby="paymentLabel">
+ <button type="button" class="segmented-opt active" data-value="เงินสด" role="tab" aria-selected="true"><span class="mi mi-sm">payments</span> เงินสด</button>
+ <button type="button" class="segmented-opt" data-value="บัตร" role="tab" aria-selected="false"><span class="mi mi-sm">credit_card</span> บัตร</button>
+ <button type="button" class="segmented-opt" data-value="โอนเงิน" role="tab" aria-selected="false"><span class="mi mi-sm">account_balance</span> โอนเงิน</button>
+ </div>
+ <input type="hidden" id="expPayment" value="เงินสด" required>
+ </div>
+
+ <button type="submit" class="expense-submit-btn"><span class="mi mi-sm">check_circle</span> Submit</button>
+ <div id="expenseStatus" class="expense-status"></div>
+ </form>
+ <div id="expenseList" class="expense-list">${expenseRowsHtml(list)}</div>
+ <div id="undoToast" class="undo-toast" style="display:none;">
+ <span id="undoToastText" class="undo-toast-text"></span>
+ <button type="button" id="undoBtn" class="undo-toast-btn">Undo</button>
+ <div class="undo-toast-bar"></div>
+ </div>
+ <div id="todaySummary" class="today-summary"></div>
+ ${usingStorageFallback ? `<div class="fallback-note"><span class="mi mi-sm">info</span> ตอนนี้ระบบจดจำข้อมูลข้ามอุปกรณ์ไม่ได้ ข้อมูลจะอยู่แค่ในแท็บนี้จนกว่าจะปิด/รีเฟรชหน้า แนะนำให้กด Export Excel เก็บไว้เป็นระยะ</div>` : ''}
+ `;
+
+ document.querySelectorAll('.report-day-tab').forEach(tab => {
+ tab.addEventListener('click', () => {
+ reportActiveDay = Number(tab.dataset.day);
+ renderReportEntrySection(reportActiveDay);
+ });
+ });
+
+ function refreshListUI(highlightIdx){
+ document.getElementById('expenseList').innerHTML = expenseRowsHtml(list, highlightIdx);
+ renderTodaySummary(list, dayNumber);
+ }
+
+ function setStatus(msg, isError){
+ const el = document.getElementById('expenseStatus');
+ el.innerHTML = `<span class="mi mi-sm">${isError ? 'error' : 'check_circle'}</span> ${msg}`;
+ el.className = 'expense-status' + (isError ? ' is-error' : ' is-ok');
+ if (!isError) setTimeout(() => { if (el) { el.innerHTML=''; el.className='expense-status'; } }, 2500);
+ }
+
+ async function persist(){
+ try {
+ await saveDayExpenses(dayNumber, list);
+ if (usingStorageFallback){
+ setStatus('Saved successfully (temporary in this tab only — see note below)', false);
+ } else {
+ setStatus('Saved successfully', false);
+ }
+ } catch (err) {
+ console.error('save failed', err);
+ setStatus('Save failed: ' + (err.message || err), true);
+ }
+ }
+
+ // ---- Segmented controls: Payer Name / Payment Method ----
+ function wireSegmented(containerId, hiddenInputId){
+ const container = document.getElementById(containerId);
+ container.querySelectorAll('.segmented-opt').forEach(btn => {
+ btn.addEventListener('click', () => {
+ container.querySelectorAll('.segmented-opt').forEach(b => {
+ b.classList.remove('active');
+ b.setAttribute('aria-selected', 'false');
+ });
+ btn.classList.add('active');
+ btn.setAttribute('aria-selected', 'true');
+ document.getElementById(hiddenInputId).value = btn.dataset.value;
+ });
+ });
+ }
+ wireSegmented('payerSegmented', 'expName');
+ wireSegmented('paymentSegmented', 'expPayment');
+
+ // ---- Currency toggle: NT$ / THB ----
+ let selectedCurrency = 'NTD';
+ const currencyToggle = document.getElementById('currencyToggle');
+ const rateNoteEl = document.getElementById('expenseRateNote');
+ const amountInput = document.getElementById('expAmount');
+
+ async function updateRateNote(){
+ const raw = parseFloat(amountInput.value);
+ if (!raw || raw <= 0){ rateNoteEl.textContent = ''; return; }
+ if (cachedTwdToThbRate === null) rateNoteEl.textContent = 'Fetching exchange rate…';
+ let rate = await getTwdToThbRate();
+ const isFallback = !rate;
+ if (isFallback) rate = FALLBACK_TWD_TO_THB_RATE;
+ const fallbackNote = isFallback ? ` (est. rate ${FALLBACK_TWD_TO_THB_RATE}, live rate unavailable)` : '';
+ if (selectedCurrency === 'THB'){
+ const ntd = raw / rate;
+ rateNoteEl.textContent = `฿${raw.toLocaleString()} ≈ NT$${ntd.toLocaleString(undefined,{maximumFractionDigits:0})} · saved as NT$${fallbackNote}`;
+ } else {
+ const thb = raw * rate;
+ rateNoteEl.textContent = `NT$${raw.toLocaleString()} ≈ ฿${thb.toLocaleString(undefined,{maximumFractionDigits:0})}${fallbackNote}`;
+ }
+ }
+
+ function resetCurrencyToggle(){
+ selectedCurrency = 'NTD';
+ currencyToggle.querySelectorAll('.currency-opt').forEach(b => b.classList.toggle('active', b.dataset.cur === 'NTD'));
+ amountInput.placeholder = '0';
+ rateNoteEl.textContent = '';
+ }
+
+ getTwdToThbRate().then(updateRateNote); // warm the cache and refresh the preview once the rate arrives
+ amountInput.addEventListener('input', updateRateNote);
+
+ function resetSegmented(containerId, hiddenInputId, defaultValue){
+ const container = document.getElementById(containerId);
+ container.querySelectorAll('.segmented-opt').forEach(b => {
+ const isDefault = b.dataset.value === defaultValue;
+ b.classList.toggle('active', isDefault);
+ b.setAttribute('aria-selected', isDefault ? 'true' : 'false');
+ });
+ document.getElementById(hiddenInputId).value = defaultValue;
+ }
+
+ currencyToggle.querySelectorAll('.currency-opt').forEach(btn => {
+ btn.addEventListener('click', () => {
+ currencyToggle.querySelectorAll('.currency-opt').forEach(b => b.classList.remove('active'));
+ btn.classList.add('active');
+ selectedCurrency = btn.dataset.cur;
+ amountInput.placeholder = selectedCurrency === 'THB' ? '0 (THB)' : '0';
+ updateRateNote();
+ });
+ });
+
+ document.getElementById('expenseForm').addEventListener('submit', async (ev) => {
+ ev.preventDefault();
+ const name = document.getElementById('expName').value;
+ const item = document.getElementById('expItem').value.trim();
+ let amount = parseFloat(amountInput.value);
+ const payment = document.getElementById('expPayment').value;
+ if (!name || !item || !amount || !payment) return;
+ let rateNote = null;
+ if (selectedCurrency === 'THB'){
+ let rate = await getTwdToThbRate();
+ if (!rate){
+ rate = FALLBACK_TWD_TO_THB_RATE;
+ rateNote = `Converted from THB at an estimated rate of ${FALLBACK_TWD_TO_THB_RATE} (live exchange rate was unavailable)`;
+ }
+ amount = amount / rate;
+ }
+ list.push({ name, item, amount, payment, ...(rateNote ? { rateNote } : {}) });
+ refreshListUI(list.length - 1);
+ ev.target.reset();
+ resetSegmented('payerSegmented', 'expName', PEOPLE[0]);
+ resetSegmented('paymentSegmented', 'expPayment', 'เงินสด');
+ resetCurrencyToggle();
+ persist();
+ });
+
+ // ---- Delete with a 3-second undo window ----
+ let pendingDelete = null; // { item, index, timer }
+ const undoToast = document.getElementById('undoToast');
+ const undoToastText = document.getElementById('undoToastText');
+ const undoBtn = document.getElementById('undoBtn');
+
+ function hideUndoToast(){
+ undoToast.style.display = 'none';
+ }
+
+ function showUndoToast(item){
+ undoToastText.textContent = `Deleted "${item.item}" (${Number(item.amount).toLocaleString()} NT$)`;
+ const bar = undoToast.querySelector('.undo-toast-bar');
+ bar.style.animation = 'none';
+ void bar.offsetHeight; // force reflow so the shrink animation restarts every time
+ bar.style.animation = '';
+ undoToast.style.display = 'flex';
+ }
+
+ function commitPendingDelete(){
+ if (!pendingDelete) return;
+ pendingDelete = null;
+ hideUndoToast();
+ persist();
+ }
+
+ function scheduleDelete(idx){
+ if (pendingDelete) commitPendingDelete(); // commit any earlier pending delete first
+ const item = list[idx];
+ list.splice(idx, 1);
+ refreshListUI();
+ pendingDelete = { item, index: idx };
+ showUndoToast(item);
+ pendingDelete.timer = setTimeout(commitPendingDelete, 3000);
+ }
+
+ undoBtn.addEventListener('click', () => {
+ if (!pendingDelete) return;
+ clearTimeout(pendingDelete.timer);
+ list.splice(pendingDelete.index, 0, pendingDelete.item);
+ pendingDelete = null;
+ hideUndoToast();
+ refreshListUI();
+ });
+
+ document.getElementById('expenseList').addEventListener('click', (ev) => {
+ const btn = ev.target.closest('.exp-del');
+ if (!btn) return;
+ scheduleDelete(Number(btn.dataset.idx));
+ });
+
+ renderTodaySummary(list, dayNumber);
+}
+
+async function renderTodaySummary(list, dayNumber){
+ const el = document.getElementById('todaySummary');
+ if (!el) return;
+ if (!list.length){
+ el.innerHTML = '';
+ return;
+ }
+ const total = list.reduce((s, e) => s + Number(e.amount || 0), 0);
+ const rate = await getTwdToThbRate();
+ const thbText = rate ? ` <span class="fx-thb">(≈ ${Math.round(total * rate).toLocaleString()} บาท)</span>` : '';
+ el.innerHTML = `
+ <div class="today-summary-title"><span class="mi mi-sm">summarize</span> Day ${dayNumber} Summary</div>
+ <div class="today-summary-total">รวมจ่ายไปทั้งหมด: ${total.toLocaleString()} NT$${thbText}</div>
+ `;
+}
+
+async function renderReportSummary(){
+ const section = document.getElementById('reportSummarySection');
+ let allLists;
+ try {
+ allLists = await Promise.all(tripData.map(d => loadDayExpenses(d.dayNumber)));
+ } catch (err) {
+ section.innerHTML = `<div class="expense-error"><span class="mi mi-sm">error</span> Load failed: ${err.message || err}</div>`;
+ return;
+ }
+ const dayTotals = allLists.map(list => list.reduce((s, e) => s + Number(e.amount || 0), 0));
+ const grandTotal = dayTotals.reduce((s, t) => s + t, 0);
+ const perPersonShare = grandTotal / PEOPLE.length;
+
+ const paidByPerson = {};
+ PEOPLE.forEach(p => paidByPerson[p] = 0);
+ allLists.flat().forEach(e => {
+ if (paidByPerson[e.name] === undefined) paidByPerson[e.name] = 0;
+ paidByPerson[e.name] += Number(e.amount || 0);
+ });
+ const maxPaid = Math.max(perPersonShare, ...Object.values(paidByPerson), 1);
+
+ const rate = await getTwdToThbRate();
+ const toTHB = ntd => rate ? Math.round(ntd * rate).toLocaleString() : null;
+ const grandTHB = toTHB(grandTotal);
+
+ // ---- Hero stat: grand total ----
+ let html = `
+ <div class="stat-hero">
+ <div class="stat-hero-label">Total spent</div>
+ <div class="stat-hero-value">${grandTotal.toLocaleString()} NT$</div>
+ <div class="stat-hero-sub">${grandTHB ? `≈ ${grandTHB} บาท` : 'Exchange rate unavailable'}</div>
+ <div class="stat-hero-split"><span>Split ${PEOPLE.length} ways</span><b>${perPersonShare.toLocaleString(undefined,{maximumFractionDigits:0})} NT$ each</b></div>
+ </div>
+ `;
+
+ // ---- Per-person stat tiles ----
+ html += `<div class="stat-section-label">By Person</div>`;
+ html += `<div class="stat-grid">` + Object.keys(paidByPerson).map(name => {
+ const paid = paidByPerson[name];
+ const diff = paid - perPersonShare;
+ const barPct = Math.min(100, (paid / maxPaid) * 100);
+ const isGet = diff >= 0;
+ return `
+ <div class="stat-tile">
+ <div class="stat-tile-head">
+ <div class="stat-tile-avatar">${name.slice(0,1).toUpperCase()}</div>
+ <div class="stat-tile-name">${name}</div>
+ </div>
+ <div class="stat-tile-value ${isGet ? 'is-get' : 'is-owe'}">${isGet ? '+' : '−'}${Math.abs(diff).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+ <div class="stat-tile-paid">${isGet ? 'gets back' : 'owes'} · paid ${paid.toLocaleString()} NT$</div>
+ <div class="stat-tile-bar-track"><div class="stat-tile-bar ${isGet ? 'bar-get' : 'bar-owe'}" style="width:${barPct}%"></div></div>
+ </div>
+ `;
+ }).join('') + `</div>`;
+
+ // ---- Per-day breakdown, including who paid what within that day ----
+ html += `<div class="stat-section-label">Daily Breakdown</div>`;
+ html += `<div class="report-daybreakdown">`;
+ html += tripData.map((d, i) => {
+ const byPersonThisDay = {};
+ allLists[i].forEach(e => { byPersonThisDay[e.name] = (byPersonThisDay[e.name] || 0) + Number(e.amount || 0); });
+ const personLine = Object.keys(byPersonThisDay).length
+ ? Object.keys(byPersonThisDay).map(n => `${n} จ่าย ${byPersonThisDay[n].toLocaleString()}`).join(' · ')
+ : 'ยังไม่มีรายการ';
+ return `
+ <div class="report-day-row">
+ <span>Day ${d.dayNumber} <span class="report-day-date">${d.dateLabel}</span></span>
+ <span>${dayTotals[i].toLocaleString()} NT$</span>
+ </div>
+ <div class="report-day-subline">${personLine}</div>
+ `;
+ }).join('');
+ html += `</div>`;
+
+ // ---- Settlement statement: minimal transfers so everyone ends up even ----
+ const balances = PEOPLE.map(name => ({ name, diff: paidByPerson[name] - perPersonShare }));
+ const creditors = balances.filter(b => b.diff > 0.5).sort((a,b) => b.diff - a.diff).map(b => ({...b}));
+ const debtors = balances.filter(b => b.diff < -0.5).sort((a,b) => a.diff - b.diff).map(b => ({...b}));
+ const transfers = [];
+ let ci = 0, di = 0;
+ while (ci < creditors.length && di < debtors.length){
+ const amt = Math.min(creditors[ci].diff, -debtors[di].diff);
+ if (amt > 0.5) transfers.push({ from: debtors[di].name, to: creditors[ci].name, amt });
+ creditors[ci].diff -= amt;
+ debtors[di].diff += amt;
+ if (creditors[ci].diff < 0.5) ci++;
+ if (debtors[di].diff > -0.5) di++;
+ }
+
+ const rateNote = rate
+ ? `<span class="fx-note">(1 NT$ ≈ ${rate.toFixed(2)} บาท)</span>`
+ : `<span class="fx-note">(ดึงอัตราแลกเปลี่ยนไม่สำเร็จ)</span>`;
+
+ html += `<div class="settlement-box">`;
+ html += `<div class="settlement-title"><span class="mi mi-sm">receipt_long</span> Settlement</div>`;
+ if (!transfers.length){
+ html += `<div class="settlement-line">ยอดเท่ากันพอดีทุกคนแล้ว ไม่ต้องโอนเพิ่มค่ะ</div>`;
+ } else {
+ transfers.forEach(t => {
+ const thb = toTHB(t.amt);
+ html += `<div class="settlement-line"><span class="mi mi-sm">payments</span> <b>${t.from}</b> ต้องจ่ายให้ <b>${t.to}</b> <b>${Math.round(t.amt).toLocaleString()} NT$</b>${thb ? ` <span class="fx-thb">(≈ ${thb} บาท)</span>` : ''}</div>`;
+ });
+ }
+ html += `<div class="settlement-line settlement-summary-line">รวมทั้งทริปใช้ไป <b>${grandTotal.toLocaleString()} NT$</b>${grandTHB ? ` <span class="fx-thb">(≈ ${grandTHB} บาท)</span>` : ''} เฉลี่ยคนละ <b>${perPersonShare.toLocaleString(undefined,{maximumFractionDigits:0})} NT$</b></div>`;
+ html += `<div class="settlement-line fx-note">${rateNote}</div>`;
+ html += `</div>`;
+
+ section.innerHTML = html;
+}
+
+/* ================= Floating quick-actions menu ================= */
+const fabWrap = document.getElementById('fabWrap');
+const fabToggle = document.getElementById('fabToggle');
+const fabBackdrop = document.getElementById('fabBackdrop');
+
+function setFabOpen(open){
+ fabWrap.classList.toggle('open', open);
+ fabBackdrop.classList.toggle('show', open);
+ fabToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+fabToggle.addEventListener('click', () => {
+ setFabOpen(!fabWrap.classList.contains('open'));
+});
+fabBackdrop.addEventListener('click', () => setFabOpen(false));
+document.querySelectorAll('.fab-item').forEach(item => {
+ item.addEventListener('click', () => setFabOpen(false));
+});
+document.addEventListener('keydown', (ev) => {
+ if (ev.key === 'Escape') setFabOpen(false);
+});
+
+document.getElementById('dayExpensesBtn').addEventListener('click', async () => {
+ const overlay = document.getElementById('reportOverlay');
+ overlay.style.display = 'flex';
+ document.getElementById('reportEntryView').style.display = 'block';
+ document.getElementById('reportSummaryView').style.display = 'none';
+ document.getElementById('reportModalTitle').innerHTML = '<span class="mi">payments</span> Expenses';
+ reportActiveDay = findTodayDayNumber() || tripData[activeIndex].dayNumber;
+ document.getElementById('reportEntrySection').innerHTML = `<div class="expense-empty">กำลังโหลด...</div>`;
+ await renderReportEntrySection(reportActiveDay);
+});
+
+async function openSummaryView(){
+ const overlay = document.getElementById('reportOverlay');
+ overlay.style.display = 'flex';
+ document.getElementById('reportEntryView').style.display = 'none';
+ document.getElementById('reportSummaryView').style.display = 'block';
+ document.getElementById('reportModalTitle').innerHTML = '<span class="mi">bar_chart</span> Trip Summary Report';
+ document.getElementById('reportSummarySection').innerHTML = `<div class="expense-empty">กำลังคำนวณ...</div>`;
+ await renderReportSummary();
+}
+
+document.getElementById('viewSummaryFabBtn').addEventListener('click', openSummaryView);
+document.getElementById('viewSummaryMiniBtn').addEventListener('click', openSummaryView);
+
+document.getElementById('reportCloseBtn').addEventListener('click', () => {
+ document.getElementById('reportOverlay').style.display = 'none';
+});
+document.getElementById('reportOverlay').addEventListener('click', (ev) => {
+ if (ev.target.id === 'reportOverlay') ev.target.style.display = 'none';
+});
+
+document.getElementById('exportExcelBtn').addEventListener('click', async () => {
+ let allLists;
+ try {
+ allLists = await Promise.all(tripData.map(d => loadDayExpenses(d.dayNumber)));
+ } catch (err) {
+ alert('Load failed: ' + (err.message || err));
+ return;
+ }
+
+ const headerStyle = { font: { bold: true, color: { rgb: 'FFFFFF' } }, fill: { fgColor: { rgb: '3D8A90' } }, alignment: { horizontal: 'center' } };
+ const titleStyle = { font: { bold: true, sz: 14 } };
+ const sectionStyle = { font: { bold: true, color: { rgb: 'FFFFFF' } }, fill: { fgColor: { rgb: 'C14732' } } };
+ const bold = { font: { bold: true } };
+ const money = n => Number(n) || 0;
+
+ // ---------- Sheet 1: Transactions ----------
+ const txHeader = ['Day', 'Date', 'Name', 'Item', 'Amount (NT$)', 'Payment Method'];
+ const txRows = [];
+ tripData.forEach((d, i) => {
+ allLists[i].forEach(e => {
+ txRows.push([`Day ${d.dayNumber}`, d.dateLabel, e.name, e.item, money(e.amount), e.payment]);
+ });
+ });
+ const wsTx = XLSX.utils.aoa_to_sheet([txHeader, ...txRows]);
+ wsTx['!cols'] = [{ wch: 8 }, { wch: 16 }, { wch: 10 }, { wch: 24 }, { wch: 14 }, { wch: 14 }];
+ txHeader.forEach((_, c) => {
+ const ref = XLSX.utils.encode_cell({ r: 0, c });
+ if (wsTx[ref]) wsTx[ref].s = headerStyle;
+ });
+ txRows.forEach((_, r) => {
+ const ref = XLSX.utils.encode_cell({ r: r + 1, c: 4 });
+ if (wsTx[ref]) wsTx[ref].z = '#,##0';
+ });
+
+ // ---------- Sheet 2: Summary ----------
+ const grandTotal = txRows.reduce((s, r) => s + r[4], 0);
+ const perShare = grandTotal / PEOPLE.length;
+ const paidByPerson = {};
+ PEOPLE.forEach(p => paidByPerson[p] = 0);
+ txRows.forEach(r => { paidByPerson[r[2]] = (paidByPerson[r[2]] || 0) + r[4]; });
+
+ const aoa = [];
+ const styleMap = {};
+ const push = (row, styles) => {
+ const r = aoa.length;
+ aoa.push(row);
+ if (styles) Object.keys(styles).forEach(c => { styleMap[`${r}:${c}`] = styles[c]; });
+ };
+
+ push(['Taiwan Trip — สรุปค่าใช้จ่ายทั้งทริป'], { 0: titleStyle });
+ push(['']);
+ push(['วันที่', 'ยอดรวม (NT$)'], { 0: headerStyle, 1: headerStyle });
+ tripData.forEach((d, i) => {
+ const total = allLists[i].reduce((s, e) => s + money(e.amount), 0);
+ push([`Day ${d.dayNumber} ${d.dateLabel}`, total]);
+ });
+ push(['']);
+ push(['รวมทั้งทริป', grandTotal], { 0: bold, 1: bold });
+ push([`หาร ${PEOPLE.length} คน คนละ`, Math.round(perShare)]);
+ push(['']);
+ push(['สรุปรายคน', '', ''], { 0: sectionStyle, 1: sectionStyle, 2: sectionStyle });
+ push(['Name', 'จ่ายไปแล้ว (NT$)', 'ผลลัพธ์'], { 0: headerStyle, 1: headerStyle, 2: headerStyle });
+ PEOPLE.forEach(p => {
+ const diff = paidByPerson[p] - perShare;
+ push([p, Math.round(paidByPerson[p]), diff >= 0 ? `ได้คืน ${Math.round(diff).toLocaleString()} NT$` : `ต้องจ่ายเพิ่ม ${Math.round(Math.abs(diff)).toLocaleString()} NT$`]);
+ });
+ push(['']);
+
+ // Settlement transfers (same greedy algorithm as the in-page report)
+ const balances = PEOPLE.map(name => ({ name, diff: paidByPerson[name] - perShare }));
+ const creditors = balances.filter(b => b.diff > 0.5).sort((a,b) => b.diff - a.diff).map(b => ({...b}));
+ const debtors = balances.filter(b => b.diff < -0.5).sort((a,b) => a.diff - b.diff).map(b => ({...b}));
+ const transfers = [];
+ let ci = 0, di = 0;
+ while (ci < creditors.length && di < debtors.length){
+ const amt = Math.min(creditors[ci].diff, -debtors[di].diff);
+ if (amt > 0.5) transfers.push([debtors[di].name, '→', creditors[ci].name, Math.round(amt)]);
+ creditors[ci].diff -= amt; debtors[di].diff += amt;
+ if (creditors[ci].diff < 0.5) ci++;
+ if (debtors[di].diff > -0.5) di++;
+ }
+ push(['ใครต้องโอนให้ใคร', '', '', ''], { 0: sectionStyle, 1: sectionStyle, 2: sectionStyle, 3: sectionStyle });
+ if (!transfers.length){
+ push(['ยอดเท่ากันพอดีทุกคนแล้ว']);
+ } else {
+ transfers.forEach(t => push(t));
+ }
+
+ const wsSummary = XLSX.utils.aoa_to_sheet(aoa);
+ wsSummary['!cols'] = [{ wch: 26 }, { wch: 16 }, { wch: 20 }, { wch: 10 }];
+ wsSummary['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } }];
+ Object.keys(styleMap).forEach(key => {
+ const [r, c] = key.split(':').map(Number);
+ const ref = XLSX.utils.encode_cell({ r, c });
+ if (!wsSummary[ref]) wsSummary[ref] = { t: 's', v: '' };
+ wsSummary[ref].s = styleMap[key];
+ });
+
+ const wb = XLSX.utils.book_new();
+ XLSX.utils.book_append_sheet(wb, wsSummary, 'Summary');
+ XLSX.utils.book_append_sheet(wb, wsTx, 'Transactions');
+ XLSX.writeFile(wb, 'taiwan-trip-expenses.xlsx');
+});
+
+try { initLeaflet(); } catch (e) { console.error('initLeaflet failed', e); }
+try { renderAll(); } catch (e) { console.error('renderAll failed', e); }
+try { renderHeroCountdown(); } catch (e) { console.error('renderHeroCountdown failed', e); }
+loadTripWeather().catch(e => console.error('loadTripWeather failed', e));
+
+// Leaflet measures its container on init; if that happens before web fonts finish
+// loading (which can reflow card heights) or before the page has fully laid out,
+// the map is left showing a grey placeholder with tiles positioned for the wrong
+// size. Re-measuring after load and once fonts settle fixes that.
+try {
+ const refreshMapSize = () => { if (leafletMap) leafletMap.invalidateSize(); };
+ window.addEventListener('load', () => setTimeout(refreshMapSize, 200));
+ if (document.fonts && document.fonts.ready){
+ document.fonts.ready.then(() => setTimeout(refreshMapSize, 100));
+ }
+} catch (e) { console.error('map invalidateSize wiring failed', e); }
+
+// Spotlight hover: track the cursor position on the two main cards (desktop only)
+try {
+ if (window.matchMedia('(hover: hover)').matches){
+ document.querySelectorAll('.timeline-card, .map-card').forEach(card => {
+ card.addEventListener('mousemove', (ev) => {
+ const rect = card.getBoundingClientRect();
+ card.style.setProperty('--spot-x', ((ev.clientX - rect.left) / rect.width * 100) + '%');
+ card.style.setProperty('--spot-y', ((ev.clientY - rect.top) / rect.height * 100) + '%');
+ });
+ });
+ }
+} catch (e) { console.error('spotlight hover wiring failed', e); }
+
+try {
+ const dayRailEl = document.getElementById('dayRail');
+ const heroEl = document.querySelector('header.hero');
+ let stickyThreshold = 100;
+ function recalcStickyThreshold(){
+ stickyThreshold = heroEl ? heroEl.offsetHeight * 0.5 : 100;
+ }
+ recalcStickyThreshold();
+ window.addEventListener('resize', recalcStickyThreshold, { passive: true });
+
+ let dayRailTicking = false;
+ window.addEventListener('scroll', () => {
+ if (dayRailTicking) return;
+ dayRailTicking = true;
+ requestAnimationFrame(() => {
+ dayRailEl.classList.toggle('is-stuck', window.scrollY > stickyThreshold);
+ dayRailTicking = false;
+ });
+ }, { passive: true });
+} catch (e) { console.error('sticky day-rail scroll listener failed', e); }
+</script>
+</body>
+</html>

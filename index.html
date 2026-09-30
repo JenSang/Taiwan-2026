@@ -2045,41 +2045,110 @@ let reportActiveDay = 1;
 
 function expenseKey(dayNumber){ return `expenses_day_${dayNumber}`; }
 
-// Fallback used only when window.storage isn't available in this rendering context.
-// In that case data still works perfectly within this open tab, but won't be
-// saved once the page is closed/reloaded, and won't sync to other people's devices.
+// Storage order:
+// 1. window.storage — shared storage, only exists when the page runs inside Claude.
+// 2. localStorage — used on normal hosting (GitHub Pages, Vercel, a local file).
+//    Survives reloads and closing the browser, but lives on this device/browser only.
+// 3. memoryStore — last resort (e.g. private mode blocking storage); lost on reload.
 const memoryStore = {};
-let usingStorageFallback = false;
+let usingStorageFallback = false; // true only when stuck on memoryStore
+const hasSharedStorage = !!(window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
 
-async function loadDayExpenses(dayNumber){
+function localGet(key){
+ try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function localSet(key, value){
+ try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+}
+
+// Google Sheets sync through the Apps Script web app in apps-script/Code.gs.
+// Paste the web app URL here; leave empty to keep data on this device only.
+const SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbzQeAWymwU2Dkj0Y8ARGwUUIHcsr-gdt7cUJE8uo8WVcj987cCYmFQDzgYX-DCXNXwT/exec';
+const sheetsServerIds = {}; // dayNumber -> Set of entry ids the sheet is known to have
+
+// The sheet's Name column only accepts AM / FOR / ARM (capitals); map back to PEOPLE for the page.
+function personFromSheet(name){ return PEOPLE.find(p => p.toUpperCase() === String(name).toUpperCase()) || name; }
+
+function newExpenseId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+
+async function sheetsRequest(body){
+ // text/plain avoids a CORS preflight, which Apps Script can't answer
+ const res = await fetch(SHEETS_API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
+ const data = await res.json();
+ if (!data.ok) throw new Error(data.error || 'Google Sheets error');
+ return data.rows;
+}
+
+async function loadDayExpensesFromSheets(dayNumber){
  const key = expenseKey(dayNumber);
+ const local = JSON.parse(localGet(key) || '[]');
  try {
- if (!window.storage || typeof window.storage.get !== 'function') throw new Error('storage unavailable');
- const res = await window.storage.get(key, true);
- if (!usingStorageFallback && memoryStore[key] !== undefined) {
- // We previously fell back for this key; keep using the fallback copy so we don't
- // silently lose data that only exists in memory.
- return JSON.parse(memoryStore[key]);
- }
- return res && res.value ? JSON.parse(res.value) : [];
+ const rows = await sheetsRequest({ action: 'list', day: dayNumber });
+ const ids = sheetsServerIds[dayNumber] = new Set(rows.map(r => r.id));
+ // keep entries saved while offline that never reached the sheet; they go up on the next save
+ const unsent = local.filter(e => e.id && !e.synced && !ids.has(e.id));
+ const merged = rows.map(r => ({ ...r, name: personFromSheet(r.name), synced: true })).concat(unsent);
+ localSet(key, JSON.stringify(merged));
+ return merged;
  } catch (e) {
- usingStorageFallback = true;
- return memoryStore[key] ? JSON.parse(memoryStore[key]) : [];
+ console.error('Google Sheets load failed', e);
+ return local;
  }
 }
 
-async function saveDayExpenses(dayNumber, list){
+async function saveDayExpensesToSheets(dayNumber, list){
  const key = expenseKey(dayNumber);
- memoryStore[key] = JSON.stringify(list); // always keep an in-memory copy as a safety net
+ list.forEach(e => { if (!e.id) e.id = newExpenseId(); });
+ localSet(key, JSON.stringify(list));
+ const known = sheetsServerIds[dayNumber] || new Set();
+ const ids = new Set(list.map(e => e.id));
+ const add = list.filter(e => !known.has(e.id)).map(({ id, name, item, amount, payment }) => ({ id, name: name.toUpperCase(), item, amount, payment }));
+ const remove = [...known].filter(id => !ids.has(id));
+ let rows;
  try {
- if (!window.storage || typeof window.storage.set !== 'function') throw new Error('storage unavailable');
- const result = await window.storage.set(key, JSON.stringify(list), true);
- if (!result) throw new Error('Storage write returned no result');
- return result;
+ rows = await sheetsRequest({ action: 'sync', day: dayNumber, add, remove });
  } catch (e) {
- usingStorageFallback = true;
- return { key, value: memoryStore[key], shared: false };
+ console.error('Google Sheets save failed', e);
+ throw new Error('ส่งขึ้น Google Sheets ไม่ได้ เก็บไว้ในเครื่องก่อน จะส่งใหม่ตอนบันทึกครั้งถัดไป');
  }
+ const serverIds = sheetsServerIds[dayNumber] = new Set(rows.map(r => r.id));
+ list.forEach(e => { e.synced = serverIds.has(e.id); });
+ localSet(key, JSON.stringify(list));
+ return { key, value: JSON.stringify(list), shared: true };
+}
+
+async function loadDayExpenses(dayNumber){
+ if (SHEETS_API_URL) return loadDayExpensesFromSheets(dayNumber);
+ const key = expenseKey(dayNumber);
+ if (memoryStore[key] !== undefined) return JSON.parse(memoryStore[key]);
+ if (hasSharedStorage){
+ try {
+ const res = await window.storage.get(key, true);
+ if (res && res.value) return JSON.parse(res.value);
+ } catch (e) { /* fall through to localStorage */ }
+ }
+ const local = localGet(key);
+ return local ? JSON.parse(local) : [];
+}
+
+async function saveDayExpenses(dayNumber, list){
+ if (SHEETS_API_URL) return saveDayExpensesToSheets(dayNumber, list);
+ const key = expenseKey(dayNumber);
+ const value = JSON.stringify(list);
+ const savedLocally = localSet(key, value); // always keep a copy on this device
+ if (hasSharedStorage){
+ try {
+ const result = await window.storage.set(key, value, true);
+ if (result) return result;
+ } catch (e) { /* fall through */ }
+ }
+ if (savedLocally){
+ delete memoryStore[key];
+ return { key, value, shared: false };
+ }
+ memoryStore[key] = value;
+ usingStorageFallback = true;
+ return { key, value, shared: false };
 }
 
 function expenseRowsHtml(list, highlightIdx){
@@ -2160,7 +2229,8 @@ async function renderReportEntrySection(dayNumber){
  <div class="undo-toast-bar"></div>
  </div>
  <div id="todaySummary" class="today-summary"></div>
- ${usingStorageFallback ? `<div class="fallback-note"><span class="mi mi-sm">info</span> ตอนนี้ระบบจดจำข้อมูลข้ามอุปกรณ์ไม่ได้ ข้อมูลจะอยู่แค่ในแท็บนี้จนกว่าจะปิด/รีเฟรชหน้า แนะนำให้กด Export Excel เก็บไว้เป็นระยะ</div>` : ''}
+ ${usingStorageFallback ? `<div class="fallback-note"><span class="mi mi-sm">info</span> ตอนนี้ระบบจดจำข้อมูลข้ามอุปกรณ์ไม่ได้ ข้อมูลจะอยู่แค่ในแท็บนี้จนกว่าจะปิด/รีเฟรชหน้า แนะนำให้กด Export Excel เก็บไว้เป็นระยะ</div>`
+ : !hasSharedStorage && !SHEETS_API_URL ? `<div class="fallback-note"><span class="mi mi-sm">info</span> ข้อมูลบันทึกไว้ในเครื่อง/เบราว์เซอร์นี้ ปิดแล้วเปิดใหม่ก็ยังอยู่ แต่ไม่ซิงก์ไปเครื่องอื่น</div>` : ''}
  `;
 
  document.querySelectorAll('.report-day-tab').forEach(tab => {
